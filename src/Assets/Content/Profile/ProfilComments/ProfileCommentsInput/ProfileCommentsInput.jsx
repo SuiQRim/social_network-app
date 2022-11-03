@@ -1,4 +1,5 @@
 import React from 'react';
+import { getActiveComTriggerAT, getAddCommentAT} from '../../../../../redux/state';
 import pciStyle from './ProfileCommentsInput.module.css'
 
 function ProfileCommentsInput(props) {
@@ -8,19 +9,12 @@ function ProfileCommentsInput(props) {
   let newComChahge = () => 
   {
     let a = newCommentText.current.value;
-    let action = 
-    {
-      type: "ACTIVE-COMMENT-TRIGGER",
-      text: a
-    }
+    let action = getActiveComTriggerAT(a);
     props.dispatch(action);
   }
 
   let addNewCom = () => {
-    let action = 
-    {
-      type: "ADD-COMMENT"
-    }
+    let action = getAddCommentAT();
     props.dispatch(action);
   }
 

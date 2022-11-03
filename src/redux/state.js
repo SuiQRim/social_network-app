@@ -1,3 +1,6 @@
+const activeComTriggerActiontType = "ACTIVE-COMMENT-TRIGGER";
+const addCommentActiontType = "ADD-COMMENT";
+
 let store = {
 
     state: {
@@ -77,15 +80,30 @@ let store = {
     
     dispatch(action)
     {
-        if(action.type === "ADD-COMMENT") {
+        if(action.type === addCommentActiontType) {
 
             this._addComment();
         }
 
-        else if(action.type === "ACTIVE-COMMENT-TRIGGER") {
+        else if(action.type === activeComTriggerActiontType) {
 
             this._activeCommentTrigger(action.text);
         }
+    }
+}
+
+
+export const getActiveComTriggerAT = (text) => {
+    return {
+        type: activeComTriggerActiontType,
+        text: text
+    }
+}
+
+
+export const getAddCommentAT = () => {
+    return {
+        type: addCommentActiontType
     }
 }
 
