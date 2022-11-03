@@ -1,0 +1,19 @@
+.navItem {
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+
+.navItem button {
+    border-radius: 2px;
+    display: block;
+    background-color: gray;
+    font-size: 18px;
+    color: white;
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 7px 14px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}

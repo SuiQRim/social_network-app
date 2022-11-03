@@ -1,0 +1,21 @@
+.post {
+    padding: 10px;
+    border: solid 2px gray;
+    margin: 10px;
+    
+}
+
+.title {
+    font-size: 24px;
+}
+
+.content {
+    margin-top: 10px;
+}
+
+.likes {
+    font-size: 14px;
+}
+.likes:before{
+    content: "👍";
+}

@@ -1,0 +1,53 @@
+.wrapper {
+    display: grid;
+    gap: 10px;
+    grid-template-areas: 
+    "icon data";
+    grid-template-columns: 64px 1fr;
+
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    border: solid 1px gray;
+    border-radius: 8px;
+    margin: 10px;  
+}
+
+.icon {
+    grid-area: icon;
+    overflow: hidden;
+    display: inline-block;
+    height: 64px;
+    width: 64px;
+    border-radius: 8px;
+}
+
+.icon img {
+    height: 100%;
+    width: 100%; 
+    object-fit: cover;
+}
+
+.header {
+    grid-area: data;
+    display: inline-block;
+    height: 64px;
+    position: relative;
+}
+
+.headerInfo {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+
+.name {
+    font-size: 24px;
+}
+
+.lastMessage {
+    font-size: 16px;
+    color: grey;
+}

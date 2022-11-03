@@ -1,24 +1,36 @@
-import logo from './logo.svg';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
+import Messages from './Assets/Content/Messages/Messages';
+import Profile from './Assets/Content/Profile/Profile';
+import Tape from './Assets/Content/Tape/Tape';
+import Header from './Assets/Header/Header';
+import Navigation from './Assets/MainNavigationMenu/Navigation';
 
-function App() {
+
+function App(props) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className='wrapper'>
+          <div className="header">
+            <Header />
+          </div>
+
+          <div className="navigation">
+            <Navigation />
+          </div>
+          
+       
+          <div className="content">
+             <Routes>
+              <Route path="/profile" element={<Profile profile={props.state.profile} dispatch={props.dispatch}/>}/>
+              <Route path="/tape" element={<Tape tape={props.state.tape}/>}/>
+              <Route path="/messenger" element={<Messages messages={props.state.messenger}/>}/>
+            </Routes>
+          </div>
+        
+      </div>
+    </BrowserRouter>
+    
   );
 }
 

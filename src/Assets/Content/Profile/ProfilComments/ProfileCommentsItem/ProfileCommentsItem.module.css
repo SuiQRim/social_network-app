@@ -1,0 +1,51 @@
+.item {
+    display: grid;
+    gap: 20px;
+
+    grid-template-areas: 
+    "icon head"
+    "none content";
+
+    grid-template-columns: 64px 1fr;
+    padding: 10px;
+    width: 100%;
+    border: solid 1px gray;
+    border-radius: 8px;
+    margin-top: 20px;
+    box-sizing: border-box;
+}
+
+.senderIcon {
+    grid-area: icon;
+    overflow: hidden;
+    grid-area: icon;
+    height: 64px;
+    width: 64px;
+    border-radius: 8px;
+}
+
+.senderIcon img {
+    height: 100%;
+    width: 100%; 
+    object-fit: cover;
+}
+
+.senderName {
+    grid-area: head;
+    font-size: 24px;
+    height: 64px;
+    position: relative;
+}
+
+.senderName a {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.content {
+    grid-area: content;
+    font-size: 16px;
+    display: block;
+}
