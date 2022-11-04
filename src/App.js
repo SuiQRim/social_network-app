@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Messages from './Assets/Content/Messages/Messages';
+import Messages from './Assets/Content/Dialogues/Dialogues';
 import Profile from './Assets/Content/Profile/Profile';
 import Tape from './Assets/Content/Tape/Tape';
 import Header from './Assets/Header/Header';
@@ -24,7 +24,7 @@ function App(props) {
              <Routes>
               <Route path="/profile" element={<Profile profile={props.state.profile} dispatch={props.dispatch}/>}/>
               <Route path="/tape" element={<Tape tape={props.state.tape}/>}/>
-              <Route path="/messenger" element={<Messages messages={props.state.messenger}/>}/>
+              <Route path="/messenger" element={<Messages messages={props.state.messenger} dispatch={props.dispatch}/>}/>
             </Routes>
           </div>
         

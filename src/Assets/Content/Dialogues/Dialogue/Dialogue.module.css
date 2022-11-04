@@ -1,8 +1,9 @@
 .wrapper {
     display: grid;
-    gap: 10px;
+    gap: 20px;
     grid-template-areas: 
-    "icon data";
+    "icon data"
+    "void content";
     grid-template-columns: 64px 1fr;
 
     padding: 10px;
@@ -10,7 +11,7 @@
     box-sizing: border-box;
     border: solid 1px gray;
     border-radius: 8px;
-    margin: 10px;  
+    margin: 20px 10px;  
 }
 
 .icon {
@@ -47,7 +48,6 @@
     font-size: 24px;
 }
 
-.lastMessage {
-    font-size: 16px;
-    color: grey;
+.messages {
+    grid-area: content;
 }
