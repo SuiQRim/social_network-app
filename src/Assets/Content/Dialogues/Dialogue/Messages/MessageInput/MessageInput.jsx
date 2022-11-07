@@ -1,14 +1,9 @@
 import React from 'react';
-import { getSendMessageAT } from '../../../../../../redux/messages-reducer';
 import mesStyle from './MessageInput.module.css'
 
 function MessageInput(props) {
 
-  let sendMessage = () => {
-    let action = getSendMessageAT(props.chatId, mesText.current.value);
-    props.dispatch(action);
-    mesText.current.value = "";
-  }
+  let sendMessage = () => props.sendMessage(props.chatId, mesText.current.value);
 
   let mesText = React.createRef();
   return (

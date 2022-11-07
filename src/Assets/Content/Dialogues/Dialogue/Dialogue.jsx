@@ -16,7 +16,7 @@ function Dialogue(props) {
       </div>
 
       <div className={mesStyle.messages}>
-        <Messages chatId={props.chatId} messages={props.dialogue.messages} dispatch={props.dispatch}/>
+        <Messages chatId={props.chatId} messages={props.dialogue.messages} sendMessage={props.sendMessage}/>
       </div>
 
     </div>

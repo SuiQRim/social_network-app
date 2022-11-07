@@ -12,7 +12,7 @@ function Messages(props) {
             {messages}
         </div>
         <div>
-            <MessageInput chatId={props.chatId} dispatch={props.dispatch}/>
+            <MessageInput chatId={props.chatId} sendMessage={props.sendMessage}/>
         </div>
 
     </div>

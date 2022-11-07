@@ -3,7 +3,7 @@ import Dialogue from './Dialogue/Dialogue';
 
 function Dialogues(props) {
 
-    let messages = props.messages.map(m => <Dialogue dialogue={m} chatId={m.id} dispatch={props.dispatch}/>);
+    let messages = props.messages.map(m => <Dialogue dialogue={m} chatId={m.id} sendMessage={props.sendMessage}/>);
 
   return (
     <div>   
