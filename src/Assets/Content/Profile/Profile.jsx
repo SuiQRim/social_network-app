@@ -6,7 +6,7 @@ function Profile(props) {
   return (
     <div>
       <ProfileInfo name={props.profile.name} />
-      <ProfileComments comments={props.profile.comments} activeCom={props.profile.activeComment} dispatch={props.dispatch}/>
+      <ProfileComments comments={props.profile.comments} activeCom={props.profile.activeComment} addCom={props.addCom} newComTrigger={props.newComTrigger}/>
     </div>
   );
 }

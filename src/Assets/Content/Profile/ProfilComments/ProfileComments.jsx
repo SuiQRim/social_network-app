@@ -10,7 +10,7 @@ function ProfileComments(props) {
   return (
     <div className={comStyle.content}>
       
-      <ProfileCommentsInput activeCom={props.activeCom} dispatch={props.dispatch}/>
+      <ProfileCommentsInput activeCom={props.activeCom} addCom={props.addCom} newComTrigger={props.newComTrigger} />
       
       <div className={comStyle.comments}>
         {listOfComment}

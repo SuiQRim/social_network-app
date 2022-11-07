@@ -1,5 +1,4 @@
 import React from 'react';
-import { getActiveComTriggerAT, getAddCommentAT} from '../../../../../redux/profile-reducer';
 import pciStyle from './ProfileCommentsInput.module.css'
 
 function ProfileCommentsInput(props) {
@@ -8,14 +7,12 @@ function ProfileCommentsInput(props) {
 
   let newComChahge = () => 
   {
-    let a = newCommentText.current.value;
-    let action = getActiveComTriggerAT(a);
-    props.dispatch(action);
+    props.newComTrigger(newCommentText.current.value);
   }
 
   let addNewCom = () => {
-    let action = getAddCommentAT();
-    props.dispatch(action);
+
+    props.addCom();
   }
 
   return (
