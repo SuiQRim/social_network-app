@@ -1,5 +1,5 @@
 import messagesReducer from "./messages-reducer";
-import profileCommentReducer from "./profile-comments-reducer";
+import profileCommentReducer from "./profile-reducer";
 
 let store = {
 

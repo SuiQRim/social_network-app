@@ -8,21 +8,46 @@ export const getActiveComTriggerAT = (text) => {
     }
 }
 
-
 export const getAddCommentAT = () => {
     return {
         type: addCommentActiontType
     }
 }
 
-let profileCommentReducer = (state, action) => {
+let initialState =
+{
+    name: "Роман",
+    comments:
+        [
+            {
+                name: "User1",
+                text: "комментарии1"
+            },
+            {
+                name: "User2",
+                text: "комментарии2"
+            },
+            {
+                name: "User4",
+                text: "комментарии3"
+            },
+            {
+                name: "User4",
+                text: "комментарии4"
+            }
+        ],
+    activeComment: "",
+    
+}
 
-    switch(action.type){
+let profileReducer = (state = initialState, action) => {
+
+    switch (action.type) {
 
         case activeComTriggerActiontType:
             state.activeComment = action.text;
             return state;
-        
+
         case addCommentActiontType:
             let post = {
                 name: state.name,
@@ -31,10 +56,10 @@ let profileCommentReducer = (state, action) => {
             state.comments.push(post);
             state.activeComment = "";
             return state;
-        default :
+        default:
             return state;
 
     }
 }
 
-export default profileCommentReducer
+export default profileReducer

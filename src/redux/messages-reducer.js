@@ -8,7 +8,48 @@ export const getSendMessageAT = (id, text) => {
     }
 }
 
-let messagesReducer = (state, action) => {
+let initialState = [
+    {
+        id : 0,
+        name: "Олег Тинькоф",
+        messages: [
+            {
+                text: "Хай"
+            },
+            {
+                text: "Ты крут"
+            },
+            {
+                text: "Ты реально хорош"
+            },
+            {
+                text: "Го скину лям"
+            },
+            {
+                text: "Супер ультра мега хорош"
+            }
+        ],
+
+        activeMessage: ""
+
+        
+    },
+    {
+        id: 1,
+        name: "Мистер Бристл Бекалсон",
+        messages: [
+            {
+                text: "Привет"
+            },
+            {
+                text: "Го развалим типов"
+            }
+        ]
+    }
+
+]
+
+let messagesReducer = (state = initialState, action) => {
     switch(action.type){
 
         case sendMessageActionType:
