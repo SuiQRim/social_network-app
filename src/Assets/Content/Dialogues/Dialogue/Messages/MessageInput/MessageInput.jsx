@@ -1,5 +1,5 @@
 import React from 'react';
-import { getSendMessageAT } from '../../../../../../redux/state';
+import { getSendMessageAT } from '../../../../../../redux/messages-reducer';
 import mesStyle from './MessageInput.module.css'
 
 function MessageInput(props) {

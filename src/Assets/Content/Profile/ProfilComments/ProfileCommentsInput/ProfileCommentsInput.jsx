@@ -1,5 +1,5 @@
 import React from 'react';
-import { getActiveComTriggerAT, getAddCommentAT} from '../../../../../redux/state';
+import { getActiveComTriggerAT, getAddCommentAT} from '../../../../../redux/profile-comments-reducer';
 import pciStyle from './ProfileCommentsInput.module.css'
 
 function ProfileCommentsInput(props) {

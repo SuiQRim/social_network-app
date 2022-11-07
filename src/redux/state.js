@@ -1,6 +1,5 @@
-const activeComTriggerActiontType = "ACTIVE-COMMENT-TRIGGER";
-const addCommentActiontType = "ADD-COMMENT";
-const sendMessageActionType = "SEND-MESSAGE";
+import messagesReducer from "./messages-reducer";
+import profileCommentReducer from "./profile-comments-reducer";
 
 let store = {
 
@@ -87,30 +86,6 @@ let store = {
             ]
     },
     
-    _activeCommentTrigger(text) {
-        this.state.profile.activeComment = text;
-        this.renderVD(this);
-    },
-
-    _addComment() {
-        let post = {
-            name: this.state.profile.name,
-            text: this.state.profile.activeComment,
-        }
-        this.state.profile.comments.push(post);
-        this.state.profile.activeComment = "";
-        this.renderVD(this);
-    },
-
-    _addMessage(id, text) {
-
-        let mes = {
-            text: text
-        }
-        this.state.messenger.find(c => c.id === id).messages.push(mes);
-        this.renderVD(this);
-    },
-
     subscribe(observer) {
         this.renderVD = observer;
     },
@@ -119,43 +94,11 @@ let store = {
     
     dispatch(action)
     {
-        if(action.type === addCommentActiontType) {
-
-            this._addComment();
-        }
-
-        else if(action.type === activeComTriggerActiontType) {
-
-            this._activeCommentTrigger(action.text);
-        }
-        else if(action.type === sendMessageActionType)
-        {
-            this._addMessage(action.id, action.text);
-        }
+        this.state.profile = profileCommentReducer(this.state.profile, action);
+        this.state.messenger = messagesReducer(this.state.messenger, action);
+        this.renderVD(this);
     }
 }
 
-
-export const getActiveComTriggerAT = (text) => {
-    return {
-        type: activeComTriggerActiontType,
-        text: text
-    }
-}
-
-
-export const getAddCommentAT = () => {
-    return {
-        type: addCommentActiontType
-    }
-}
-
-export const getSendMessageAT = (id, text) => {
-    return {
-        type: sendMessageActionType,
-        id: id,
-        text: text
-    }
-}
-window.store = store;
+window.store = store.state;
 export default store;
