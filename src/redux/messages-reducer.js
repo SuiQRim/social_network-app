@@ -1,12 +1,20 @@
 const sendMessageActionType = "SEND-MESSAGE";
+const newMesTriggerActionType = "NEW-MESSAGE-TRIGGER";
 
-export const getSendMessageAT = (id, text) => {
+export const getSendMessageAT = (id) => {
     return {
         type: sendMessageActionType,
+        id: id,
+    }
+}
+export const getNewMesTriggerAT = (id, text) => {
+    return {
+        type: newMesTriggerActionType,
         id: id,
         text: text
     }
 }
+
 
 let initialState = [
     {
@@ -29,9 +37,7 @@ let initialState = [
                 text: "Супер ультра мега хорош"
             }
         ],
-
         activeMessage: ""
-
         
     },
     {
@@ -44,7 +50,8 @@ let initialState = [
             {
                 text: "Го развалим типов"
             }
-        ]
+        ],
+        activeMessage: ""
     }
 
 ]
@@ -53,10 +60,16 @@ let messagesReducer = (state = initialState, action) => {
     switch(action.type){
 
         case sendMessageActionType:
+            let dialog = state.find(c => c.id === action.id);
             let mes = {
-                text: action.text
+                text: dialog.activeMessage
             }
-            state.find(c => c.id === action.id).messages.push(mes);
+            dialog.messages.push(mes);
+            dialog.activeMessage = "";
+            return state;
+
+        case newMesTriggerActionType:
+            state.find(c => c.id === action.id).activeMessage = action.text;
             return state;
         default :
             return state;

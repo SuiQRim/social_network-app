@@ -4,16 +4,17 @@ import mesStyle from './Messages.module.css'
 
 function Messages(props) {
 
-    let messages = props.messages.map(m => <Message message={m.text}/>);
+  let messages = props.messages.map(m => <Message message={m.text} />);
 
   return (
-    <div>   
-        <div>
-            {messages}
-        </div>
-        <div>
-            <MessageInput chatId={props.chatId} sendMessage={props.sendMessage}/>
-        </div>
+    <div>
+      <div>
+        {messages}
+      </div>
+      <div>
+        <MessageInput chatId={props.chatId} activeMessage={props.activeMessage}
+          newMesTrigger={props.newMesTrigger} sendMessage={props.sendMessage} />
+      </div>
 
     </div>
   );

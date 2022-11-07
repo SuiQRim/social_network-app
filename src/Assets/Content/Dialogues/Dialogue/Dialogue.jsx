@@ -10,13 +10,14 @@ function Dialogue(props) {
       </div>
 
       <div className={mesStyle.header}>
-        <div className={mesStyle.headerInfo}> 
+        <div className={mesStyle.headerInfo}>
           <div className={mesStyle.name}><a>{props.dialogue.name}</a></div>
         </div>
       </div>
 
       <div className={mesStyle.messages}>
-        <Messages chatId={props.chatId} messages={props.dialogue.messages} sendMessage={props.sendMessage}/>
+        <Messages chatId={props.chatId} messages={props.dialogue.messages}
+          activeMessage={props.activeMessage} newMesTrigger={props.newMesTrigger} sendMessage={props.sendMessage} />
       </div>
 
     </div>

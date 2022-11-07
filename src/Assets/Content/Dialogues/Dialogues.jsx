@@ -3,11 +3,12 @@ import Dialogue from './Dialogue/Dialogue';
 
 function Dialogues(props) {
 
-    let messages = props.messages.map(m => <Dialogue dialogue={m} chatId={m.id} sendMessage={props.sendMessage}/>);
+  let messages = props.messages.map(m =>
+    <Dialogue dialogue={m} chatId={m.id} activeMessage={m.activeMessage} newMesTrigger={props.newMesTrigger} sendMessage={props.sendMessage} />);
 
   return (
-    <div>   
-        {messages}
+    <div>
+      {messages}
     </div>
   );
 }
