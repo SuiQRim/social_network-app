@@ -1,22 +1,23 @@
+import { connect } from 'react-redux';
 import { getActiveComTriggerAT, getAddCommentAT } from '../../../redux/profile-reducer';
 import Profile from './Profile';
 import profStyle from './Profile.module.css'
 
-function ProfileContainer(props) {
-
-    let addCom = () =>{
-        props.dispatch(getAddCommentAT())
+const mapStateToProps = (state) => {
+    return {
+        profile : state.profile
     }
 
-    let newComTrigger = (text) => {
-        props.dispatch(getActiveComTriggerAT(text))
-    }
-
-    return (
-        <div>
-            <Profile profile={props.profile} addCom={addCom} newComTrigger={newComTrigger}/>
-        </div>
-    );
 }
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addCom : () => dispatch(getAddCommentAT()),
+        newComTrigger: (text) => dispatch(getActiveComTriggerAT(text))
+    }
+}
+
+let ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(Profile);
+
 
 export default ProfileContainer;

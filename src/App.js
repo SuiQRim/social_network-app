@@ -7,7 +7,7 @@ import Header from './Assets/Header/Header';
 import Navigation from './Assets/MainNavigationMenu/Navigation';
 
 
-function App(props) {
+function App() {
   return (
     <BrowserRouter>
       <div className='wrapper'>
@@ -22,9 +22,9 @@ function App(props) {
        
           <div className="content">
              <Routes>
-              <Route path="/profile" element={<ProfileContainer profile={props.state.profile} dispatch={props.dispatch}/>}/>
-              <Route path="/tape" element={<Tape tape={props.state.tape}/>}/>
-              <Route path="/messenger" element={<DialoguesContainer messages={props.state.messenger} dispatch={props.dispatch}/>}/>
+              <Route path="/profile" element={<ProfileContainer/>}/>
+              <Route path="/tape" element={<Tape />}/>
+              <Route path="/messenger" element={<DialoguesContainer/>}/>
             </Routes>
           </div>
         

@@ -1,21 +1,21 @@
 import mesStyle from './Dialogues.module.css'
-import Dialogue from './Dialogue/Dialogue';
 import Dialogues from './Dialogues';
 import { getNewMesTriggerAT, getSendMessageAT } from '../../../redux/messages-reducer';
+import { connect } from 'react-redux';
 
-function DialoguesContainer(props) {
-
-    let sendMessage = (chatId) =>
-        props.dispatch(getSendMessageAT(chatId));
-
-    let newMesTrigger = (charId, text) =>
-        props.dispatch(getNewMesTriggerAT(charId, text));
-
-    return (
-        <div>
-            <Dialogues messages={props.messages} newMesTrigger={newMesTrigger} sendMessage={sendMessage} />
-        </div>
-    );
+const mapStateToProps = (state) =>{
+    return {
+        messages: state.messenger
+    }
 }
+
+const mapDispatchToProps = (dispatch) =>{
+    return {
+        newMesTrigger: (charId, text) =>  dispatch(getNewMesTriggerAT(charId, text)),
+        sendMessage : (chatId) => dispatch(getSendMessageAT(chatId))
+    }
+}
+
+let DialoguesContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogues);
 
 export default DialoguesContainer;
