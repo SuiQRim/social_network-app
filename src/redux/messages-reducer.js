@@ -18,7 +18,7 @@ export const getNewMesTriggerAT = (id, text) => {
 
 let initialState = [
     {
-        id : 0,
+        id: 0,
         name: "Олег Тинькоф",
         messages: [
             {
@@ -38,7 +38,7 @@ let initialState = [
             }
         ],
         activeMessage: ""
-        
+
     },
     {
         id: 1,
@@ -57,21 +57,41 @@ let initialState = [
 ]
 
 let messagesReducer = (state = initialState, action) => {
-    switch(action.type){
+
+    let stateCopy;
+
+    switch (action.type) {
 
         case sendMessageActionType:
-            let dialog = state.find(c => c.id === action.id);
-            let mes = {
-                text: dialog.activeMessage
-            }
-            dialog.messages.push(mes);
-            dialog.activeMessage = "";
-            return state;
+
+            let index = state.findIndex(c => c.id === action.id);
+            stateCopy = [...state]
+
+            stateCopy[index] = {
+                ...stateCopy[index],
+                messages: [
+                    ...stateCopy[index].messages,
+                    {
+                        text: stateCopy[index].activeMessage
+                    }
+                ],
+                activeMessage: ""
+            };
+
+            return stateCopy;
 
         case newMesTriggerActionType:
-            state.find(c => c.id === action.id).activeMessage = action.text;
-            return state;
-        default :
+
+            let a = state.findIndex(c => c.id === action.id);
+            stateCopy = [...state]
+
+            stateCopy[a] = {
+                ...state[a],
+                activeMessage: action.text
+            }
+            return stateCopy;
+
+        default:
             return state;
     }
 

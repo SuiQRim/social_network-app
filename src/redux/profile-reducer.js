@@ -37,7 +37,7 @@ let initialState =
             }
         ],
     activeComment: "",
-    
+
 }
 
 let profileReducer = (state = initialState, action) => {
@@ -45,17 +45,20 @@ let profileReducer = (state = initialState, action) => {
     switch (action.type) {
 
         case activeComTriggerActiontType:
-            state.activeComment = action.text;
-            return state;
+            return {
+                ...state,
+                activeComment: action.text
+            }
 
         case addCommentActiontType:
-            let post = {
-                name: state.name,
-                text: state.activeComment,
-            }
-            state.comments.push(post);
-            state.activeComment = "";
-            return state;
+            return {
+                ...state,
+                comments: [...state.comments, {
+                    name: state.name,
+                    text: state.activeComment,
+                }],
+                activeComment: state.activeComment
+            };
         default:
             return state;
 
