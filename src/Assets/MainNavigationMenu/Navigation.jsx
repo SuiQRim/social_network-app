@@ -9,6 +9,7 @@ function Navigation() {
       <NavLink className={nav.link} to='/profile'><NavItem title="Профиль"/></NavLink>
       <NavLink className={nav.link} to='/tape'><NavItem title="Лента"/></NavLink>
       <NavLink className={nav.link} to='/messenger'><NavItem title="Мессенджер"/></NavLink>
+      <NavLink className={nav.link} to='/users'><NavItem title="Пользователи"/></NavLink>
     </div>
   );
 }

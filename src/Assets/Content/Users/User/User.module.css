@@ -1,0 +1,76 @@
+*{
+    font-family: Arial;
+}
+
+.wrapper {
+    display: grid;
+    gap: 20px;
+    grid-template-areas: 
+    "icon data";
+    grid-template-columns: 128px 1fr;
+
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    border: solid 1px gray;
+    border-radius: 8px;
+    margin: 20px 10px;  
+}
+
+.icon {
+    grid-area: icon;
+    height: 128px;
+    width: 128px;
+    display: inline-block;
+    border-radius: 8px;
+}
+
+.icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.mainInfo {
+    grid-area: data;
+    display: inline-block;
+    height: 64px;
+    position: relative;
+}
+
+.name {
+    font-size: 24px;
+}
+
+.addFriend {
+    border: 0px;
+    border-radius: 8px;
+    padding: 10px 20px;
+    color: white;
+    background-color: #5d96a0;
+}
+
+.addFriend:hover {
+    background-color: #6ab2be;
+}
+
+.addFriend:active{
+    background-color: #4d767e;
+}
+
+
+.deleteFriend {
+    border: 0px;
+    border-radius: 8px;
+    padding: 10px 20px;
+    color: white;
+    background-color: #666666;
+}
+.deleteFriend:hover {
+    background-color: #777777;
+}
+
+.deleteFriend:active{
+    background-color: #555555;
+}
