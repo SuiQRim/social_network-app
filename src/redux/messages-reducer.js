@@ -58,38 +58,33 @@ let initialState = [
 
 let messagesReducer = (state = initialState, action) => {
 
-    let stateCopy;
-
     switch (action.type) {
 
         case sendMessageActionType:
-
-            let index = state.findIndex(c => c.id === action.id);
-            stateCopy = [...state]
-
-            stateCopy[index] = {
-                ...stateCopy[index],
-                messages: [
-                    ...stateCopy[index].messages,
-                    {
-                        text: stateCopy[index].activeMessage
+            return state.map(u => {
+                if (u.id === action.id) {
+                    return {
+                        ...u,
+                        messages: [
+                            ...u.messages,
+                            { text: u.activeMessage }
+                        ],
+                        activeMessage: ""
                     }
-                ],
-                activeMessage: ""
-            };
-
-            return stateCopy;
+                }
+                return u;
+            });
 
         case newMesTriggerActionType:
-
-            let a = state.findIndex(c => c.id === action.id);
-            stateCopy = [...state]
-
-            stateCopy[a] = {
-                ...state[a],
-                activeMessage: action.text
-            }
-            return stateCopy;
+            return state.map(u => {
+                if (u.id === action.id) {
+                    return {
+                        ...u,
+                        activeMessage: action.text
+                    }
+                }
+                return u;
+            });
 
         default:
             return state;
