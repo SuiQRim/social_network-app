@@ -1,9 +1,14 @@
 import axios from 'axios';
+import React from 'react';
 import User from './User/User';
 import style from './Users.module.css'
 
-function Users(props) {
-    let getUsers = () => {
+class Users extends React.Component {
+
+    constructor (props) {
+
+        super(props);
+
         if (props.users.length === 0) {
             axios.get("https://social-network.samuraijs.com/api/1.0/users").then(responce => {
                 props.setUsers(responce.data.items);
@@ -11,15 +16,17 @@ function Users(props) {
         }
     }
 
+    render() {
 
-    let users = props.users.map(u => <User user={u} addFriend={props.addFriend} deleteFriend={props.deleteFriend} />);
+        let users = this.props.users.map(u => <User key={u.id} user={u} addFriend={this.props.addFriend} deleteFriend={this.props.deleteFriend} />);
 
-    return (
-        <div>
-            <button onClick={getUsers} className={style.uploadUsers}>Загрузить пользователей</button>
-            {users}
-        </div>
-    );
+        return (
+            <div>
+                {users}
+            </div>
+        );
+    }
 }
+
 
 export default Users;
