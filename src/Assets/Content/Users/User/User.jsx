@@ -15,7 +15,7 @@ function User(props) {
     return (
         <div className={style.wrapper}>
             <div className={style.icon}>
-                <img src={user.icon} />
+                <img src={user.photos.small} />
             </div>
             <div className={style.mainInfo}>
                 <div className={style.name}>{user.name}</div>

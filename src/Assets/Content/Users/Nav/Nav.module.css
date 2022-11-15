@@ -1,0 +1,28 @@
+.simpleItem {
+    cursor:pointer;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    margin: 4px;
+    padding: 4px;
+    font-size: 18px;
+    background: #666666;
+    color: white;
+    border: black 2px solid;
+    border-radius: 8px;
+    display: inline-block;
+}
+
+.selectedItem {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    margin: 4px;
+    padding: 4px;
+    font-size: 18px;
+    color: white;
+    background: #5d96a0;
+    border: black 2px solid;
+    border-radius: 8px;
+    display: inline-block;
+}
