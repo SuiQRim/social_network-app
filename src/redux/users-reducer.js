@@ -33,7 +33,7 @@ let usersReducer = (state = initialState, action) => {
                 if (u.id === action.userId)
                     return {
                         ...u,
-                        isFriend : true
+                        followed : true
                     }
                 return u;
             })
@@ -43,7 +43,7 @@ let usersReducer = (state = initialState, action) => {
                 if (u.id === action.userId)
                     return {
                         ...u,
-                        isFriend : false
+                        followed : false
                     }
                 return u;
             })

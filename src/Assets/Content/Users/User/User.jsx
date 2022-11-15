@@ -21,9 +21,11 @@ function User(props) {
                 <div className={style.name}>{user.name}</div>
             </div>
 
-            <button onClick={user.isFriend ? deleteFriend : addFriend} className={user.isFriend ? style.deleteFriend : style.addFriend}>
-                {user.isFriend ? "Удалить из друзей" : "Добавить в друзья"}
-            </button>
+            {
+            user.followed 
+            ?<button className={style.deleteFriend} onClick={deleteFriend}>Удалить из друзей</button> 
+            :<button className={style.addFriend} onClick={addFriend}>Добавить в друзья</button>
+            }
         </div>
     );
 }
