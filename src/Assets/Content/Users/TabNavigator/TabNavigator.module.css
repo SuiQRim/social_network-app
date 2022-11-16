@@ -1,0 +1,10 @@
+.but {
+    cursor:pointer;
+    color: white;
+    background: #5d96a0;
+    border: black 2px solid;
+    border-radius: 8px;
+    vertical-align: middle;
+    padding: 5px 10px;
+    margin: 0px 20px;
+}

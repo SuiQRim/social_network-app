@@ -94,9 +94,8 @@ let usersReducer = (state = initialState, action) => {
             }
 
         case SET_PAGE_AT:
-            let n = action.pageNumber
-            if(n < 1 ^ n > state.totalUserCount) return state;
-
+            let n = action.pageNumber;
+            if(n < 1 ^ n > state.pagesCount) return state;
             let diapasoneStart;
             if ((n < state.diapasoneStart) ^ (n > state.diapasoneStart + state.diapasone - 1)) {
                 switch(n){
