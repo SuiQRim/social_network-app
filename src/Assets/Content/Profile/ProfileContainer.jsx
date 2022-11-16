@@ -1,11 +1,27 @@
+import axios from 'axios';
+import React from 'react';
 import { connect } from 'react-redux';
-import { getActiveComTriggerAT, getAddCommentAT } from '../../../redux/profile-reducer';
+import { getActiveComTriggerAT, getAddCommentAT, setProfileInfo } from '../../../redux/profile-reducer';
 import Profile from './Profile';
-import profStyle from './Profile.module.css'
+import style from './Profile.module.css'
+
+class ProfileContainer extends React.Component{
+
+    componentDidMount(){
+        axios.get('https://social-network.samuraijs.com/api/1.0/profile/2').then(responce => {
+            this.props.setProfileInfo(responce.data);
+        })
+    }
+    render(){
+        return <Profile {...this.props} /> 
+    }
+}
+
 
 const mapStateToProps = (state) => {
     return {
-        profile : state.profile
+        profInfo : state.profile.information,
+        comments : state.profile.comments
     }
 
 }
@@ -13,11 +29,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         addCom : () => dispatch(getAddCommentAT()),
-        newComTrigger: (text) => dispatch(getActiveComTriggerAT(text))
+        newComTrigger: (text) => dispatch(getActiveComTriggerAT(text)),
+        setProfileInfo : (profileInfo) => dispatch(setProfileInfo(profileInfo))
     }
 }
 
-let ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(Profile);
-
-
-export default ProfileContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainer);

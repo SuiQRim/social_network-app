@@ -1,15 +1,19 @@
 import profInfoStyle from './ProfileInformation.module.css'
 
-function ProfileInfo(props) {
+function ProfileInfo(props) { 
+  if(!props.profInfo){
+    return(<div></div>)
+  }
+
   return (
     <div className={profInfoStyle.body}>
 
       <div className={profInfoStyle.avatar}>
-        <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSibRhC_l2NylzcKzyuNT8H2PnInA0l93Rg7AVfSJqzKw&s' />
+        <img src={props.profInfo.photos.large} />
       </div>
 
       <div className={profInfoStyle.name}>
-         <a >{props.name}</a>
+         <a >{props.profInfo.fullName}</a>
       </div>
      
 

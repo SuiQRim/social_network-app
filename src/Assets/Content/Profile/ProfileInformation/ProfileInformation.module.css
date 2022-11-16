@@ -3,6 +3,8 @@
 }
 
 .avatar {
+    height: 256px;
+    width: 256;
     margin: 10px;
     display: inline-block;
     border-radius: 8px;

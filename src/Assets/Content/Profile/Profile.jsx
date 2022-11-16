@@ -5,8 +5,8 @@ import ProfileInfo from './ProfileInformation/ProfileInformation';
 function Profile(props) {
   return (
     <div>
-      <ProfileInfo name={props.profile.name} />
-      <ProfileComments comments={props.profile.comments} activeCom={props.profile.activeComment} addCom={props.addCom} newComTrigger={props.newComTrigger}/>
+      <ProfileInfo profInfo={props.profInfo} />
+      <ProfileComments comments={props.comments} activeCom={props.activeComment} addCom={props.addCom} newComTrigger={props.newComTrigger}/>
     </div>
   );
 }

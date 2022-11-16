@@ -24,7 +24,7 @@ function App() {
        
           <div className="content">
              <Routes>
-              <Route path="/profile" element={<ProfileContainer/>}/>
+              <Route path="/profile/*" element={<ProfileContainer/>}/>
               <Route path="/tape" element={<TapeContainer/>}/>
               <Route path="/messenger" element={<DialoguesContainer/>}/>
               <Route path="/users" element={<UsersContainer/>}/>
