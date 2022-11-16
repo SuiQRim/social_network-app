@@ -89,6 +89,7 @@ let usersReducer = (state = initialState, action) => {
                 ...state,
                 isFetching : action.isFetching
             }
+
         default:
             return state;
     }
@@ -96,41 +97,41 @@ let usersReducer = (state = initialState, action) => {
 }
 
 
-export let addFriendAT = (userId) => {
+export let addFriend = (userId) => {
     return {
         type: addFriendActiontType,
         userId: userId
     }
 }
 
-export let deleteFriendAT = (userId) => {
+export let deleteFriend = (userId) => {
     return {
         type: deleteFriendActiontType,
         userId: userId
     }
 }
-export let setUsersAT = (users) => {
+export let setUsers = (users) => {
     return {
         type: setUsersActionType,
         users: users
     }
 }
 
-export let setTotalUserCountAC = (totalUserCount) => {
+export let setTotalUserCount = (totalUserCount) => {
     return {
         type: SET_TOTAL_USERS_COUNT,
         totalUserCount: totalUserCount
     }
 }
 
-export let setPageAC = (pageNumber) => {
+export let setPage = (pageNumber) => {
     return {
         type: SET_PAGE_AT,
         pageNumber: pageNumber
     }
 }
 
-export let toggleFetchingAC = (isFetching) => {
+export let toggleFetching = (isFetching) => {
     return {
         type: TOGGLE_FETCHING_AT,
         isFetching: isFetching,

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import { connect } from 'react-redux';
-import { addFriendAT, deleteFriendAT, setUsersAT, setTotalUserCountAC, setPageAC, toggleFetchingAC } from '../../../redux/users-reducer';
+import { addFriend, deleteFriend, setUsers, setTotalUserCount, setPage, toggleFetching } from '../../../redux/users-reducer';
 import Users from './Users';
 import loadGif from '../../../Prefabs/Images/load.gif';
 
@@ -38,27 +38,26 @@ class UsersContainer extends React.Component {
 
 
 const mapStateToProps = (state) => {
+    let users = state.users;
     return {
-        users: state.users.items,
-        selectedPage: state.users.selectedCount,
-        pagesCount: state.users.pagesCount,
-        itemsInPageCount: state.users.itemsInPageCount,
-        diapasone: state.users.diapasone,
-        diapasoneStart: state.users.diapasoneStart,
-        isFetching: state.users.isFetching
+        users: users.items,
+        selectedPage: users.selectedCount,
+        pagesCount: users.pagesCount,
+        itemsInPageCount: users.itemsInPageCount,
+        diapasone: users.diapasone,
+        diapasoneStart: users.diapasoneStart,
+        isFetching: users.isFetching
     }
 
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        addFriend: (id) => dispatch(addFriendAT(id)),
-        deleteFriend: (id) => dispatch(deleteFriendAT(id)),
-        setUsers: (users) => dispatch(setUsersAT(users)),
-        setTotalUserCount: (totalCount) => dispatch(setTotalUserCountAC(totalCount)),
-        setPage: (pageNumber) => dispatch(setPageAC(pageNumber)),
-        toggleFetching : (isFetching) => dispatch(toggleFetchingAC(isFetching))
-    }
+const mapDispatchToProps = {
+    addFriend,
+    deleteFriend,
+    setUsers,
+    setTotalUserCount,
+    setPage,
+    toggleFetching
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
