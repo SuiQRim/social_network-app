@@ -1,3 +1,10 @@
+const addFriendActiontType = "ADD-FRIEND";
+const deleteFriendActiontType = "DELETE-FRIEND";
+const setUsersActionType = "SET-USERS";
+const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
+const SET_PAGE_AT = "SET_PAGE";
+const TOGGLE_FETCHING_AT = "TOGGLE_FETCHING";
+
 const initialState = {
     items: [],
     pagesCount: 0,
@@ -5,48 +12,8 @@ const initialState = {
     totalUserCount: 0,
     selectedCount: 1,
     diapasone: 5,
-    diapasoneStart: 1
-}
-
-const addFriendActiontType = "ADD-FRIEND";
-const deleteFriendActiontType = "DELETE-FRIEND";
-const setUsersActionType = "SET-USERS"
-const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT"
-const SET_PAGE_AT = "SET_PAGE"
-
-
-export let addFriendAT = (userId) => {
-    return {
-        type: addFriendActiontType,
-        userId: userId
-    }
-}
-
-export let deleteFriendAT = (userId) => {
-    return {
-        type: deleteFriendActiontType,
-        userId: userId
-    }
-}
-export let setUsersAT = (users) => {
-    return {
-        type: setUsersActionType,
-        users: users
-    }
-}
-
-export let setTotalUserCountAC = (totalUserCount) => {
-    return {
-        type: SET_TOTAL_USERS_COUNT,
-        totalUserCount: totalUserCount
-    }
-}
-
-export let setPageAC = (pageNumber) => {
-    return {
-        type: SET_PAGE_AT,
-        pageNumber: pageNumber
-    }
+    diapasoneStart: 1,
+    isFetching: false
 }
 
 let usersReducer = (state = initialState, action) => {
@@ -111,17 +78,64 @@ let usersReducer = (state = initialState, action) => {
                 }
             }
             else {diapasoneStart = state.diapasoneStart}
-
-
             return {
                 ...state,
                 selectedCount: n,
                 diapasoneStart: diapasoneStart
+            }
+
+        case TOGGLE_FETCHING_AT:
+            return{
+                ...state,
+                isFetching : action.isFetching
             }
         default:
             return state;
     }
 
 }
+
+
+export let addFriendAT = (userId) => {
+    return {
+        type: addFriendActiontType,
+        userId: userId
+    }
+}
+
+export let deleteFriendAT = (userId) => {
+    return {
+        type: deleteFriendActiontType,
+        userId: userId
+    }
+}
+export let setUsersAT = (users) => {
+    return {
+        type: setUsersActionType,
+        users: users
+    }
+}
+
+export let setTotalUserCountAC = (totalUserCount) => {
+    return {
+        type: SET_TOTAL_USERS_COUNT,
+        totalUserCount: totalUserCount
+    }
+}
+
+export let setPageAC = (pageNumber) => {
+    return {
+        type: SET_PAGE_AT,
+        pageNumber: pageNumber
+    }
+}
+
+export let toggleFetchingAC = (isFetching) => {
+    return {
+        type: TOGGLE_FETCHING_AT,
+        isFetching: isFetching,
+    }
+}
+
 
 export default usersReducer
