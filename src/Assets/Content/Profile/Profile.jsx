@@ -1,5 +1,4 @@
 import ProfileComments from './ProfilComments/ProfileComments';
-import profStyle from './Profile.module.css'
 import ProfileInfo from './ProfileInformation/ProfileInformation';
 
 function Profile(props) {

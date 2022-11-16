@@ -16,9 +16,20 @@
     border-radius: 8px;
 }
 
-.name {
-    font-size: 22px;
-    margin: 20px;
+.mainInfo {
+    padding: 10px;
     vertical-align: top;
     display: inline-block;
+}
+
+.name {
+    font-size: 32px;
+    padding: 10px;
+    vertical-align: top;
+}
+
+.about {
+    font-size: 16px;
+    color: gray;
+    padding: 10px;
 }

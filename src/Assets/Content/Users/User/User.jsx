@@ -18,7 +18,7 @@ function User(props) {
 
             <div className={style.icon}>
                 <NavLink to={'/profile/' + user.id}>
-                    <img src={user.photos.small} />
+                    <img  alt='аватар' src={user.photos.small ? user.photos.small : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSibRhC_l2NylzcKzyuNT8H2PnInA0l93Rg7AVfSJqzKw&s'} />
                 </NavLink>
             </div>
             <div className={style.mainInfo}>
