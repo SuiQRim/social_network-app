@@ -1,6 +1,6 @@
 .simpleItem {
     cursor:pointer;
-    width: 40px;
+    width: 60px;
     height: 40px;
     text-align: center;
     margin: 4px;
@@ -14,7 +14,7 @@
 }
 
 .selectedItem {
-    width: 40px;
+    width: 60px;
     height: 40px;
     text-align: center;
     margin: 4px;

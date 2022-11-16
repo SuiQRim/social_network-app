@@ -6,10 +6,6 @@ import style from './Users.module.css'
 
 class Users extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     getUsers = (itemsInPage, selectedPage) => {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${itemsInPage}&page=${selectedPage}`).then(responce => {
             this.props.setUsers(responce.data.items);
@@ -32,18 +28,25 @@ class Users extends React.Component {
     render() {
         let pages = [];
 
-        for (let i = 1; i <= this.props.pagesCount && i <= 20; i++) {
+
+        pages.push(<Nav onSelectChange={this.onPageChanged} number={1} isSelected={1 === this.props.selectedPage}/>);
+        pages.push(<button onClick={() => this.onPageChanged(this.props.selectedPage - 1)}>◄</button>);
+
+        for (let i = this.props.diapasoneStart; i <= this.props.diapasoneStart + this.props.diapasone - 1; i++) {
             pages.push(
-                <Nav onSelectChange={this.onPageChanged} number={i} isSelected={i == this.props.selectedPage}/>
+                <Nav key={i} onSelectChange={this.onPageChanged} number={i} isSelected={i === this.props.selectedPage}/>
             );
-        }
+        }  
+        pages.push(<button onClick={() => this.onPageChanged(this.props.selectedPage + 1)}>►</button>);
+        pages.push(<Nav onSelectChange={this.onPageChanged} number={this.props.pagesCount} isSelected={this.props.pagesCount === this.props.selectedPage}/>);
 
-
+        
         let users = this.props.users.map(u => <User key={u.id} user={u} addFriend={this.props.addFriend} deleteFriend={this.props.deleteFriend} />);
 
         return (
             <div>
-                <div>{pages}</div>
+                
+                <div className={style.pages}>{pages}</div>
                 {users}
             </div>
         );

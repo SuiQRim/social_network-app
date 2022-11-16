@@ -3,7 +3,9 @@ const initialState = {
     pagesCount: 0,
     itemsInPageCount: 4,
     totalUserCount: 0,
-    selectedCount: 1
+    selectedCount: 1,
+    diapasone: 5,
+    diapasoneStart: 1
 }
 
 const addFriendActiontType = "ADD-FRIEND";
@@ -46,6 +48,7 @@ export let setPageAC = (pageNumber) => {
         pageNumber: pageNumber
     }
 }
+
 let usersReducer = (state = initialState, action) => {
 
     switch (action.type) {
@@ -67,32 +70,54 @@ let usersReducer = (state = initialState, action) => {
         case deleteFriendActiontType:
             return {
                 ...state,
-                items : state.items.map(u => {
-                if (u.id === action.userId)
-                    return {
-                        ...u,
-                        followed: false
-                    }
-                return u;
-            })
-        }
+                items: state.items.map(u => {
+                    if (u.id === action.userId)
+                        return {
+                            ...u,
+                            followed: false
+                        }
+                    return u;
+                })
+            }
 
         case setUsersActionType:
-            return {...state,
-                items : [...action.users]
+            return {
+                ...state,
+                items: [...action.users]
             }
 
         case SET_TOTAL_USERS_COUNT:
             return {
                 ...state,
-                totalUserCount : action.totalUserCount,
-                pagesCount : Math.ceil(action.totalUserCount / state.itemsInPageCount)
+                totalUserCount: action.totalUserCount,
+                pagesCount: Math.ceil(action.totalUserCount / state.itemsInPageCount)
             }
 
         case SET_PAGE_AT:
-            return{
+            let n = action.pageNumber
+            if(n < 1 ^ n > state.totalUserCount) return state;
+
+            let diapasoneStart;
+            if ((n < state.diapasoneStart) ^ (n > state.diapasoneStart + state.diapasone - 1)) {
+                switch(n){
+                    case 1:
+                        diapasoneStart = 1
+                        break;
+                    case state.pagesCount:
+                        diapasoneStart = state.pagesCount - state.diapasone + 1;
+                        break;
+                    default:
+                        diapasoneStart = Math.ceil(n - (state.diapasone / 2));
+                        break;
+                }
+            }
+            else {diapasoneStart = state.diapasoneStart}
+
+
+            return {
                 ...state,
-                selectedCount : action.pageNumber
+                selectedCount: n,
+                diapasoneStart: diapasoneStart
             }
         default:
             return state;

@@ -7,7 +7,9 @@ const mapStateToProps = (state) => {
         users : state.users.items,
         selectedPage : state.users.selectedCount,
         pagesCount : state.users.pagesCount,
-        itemsInPageCount : state.users.itemsInPageCount
+        itemsInPageCount : state.users.itemsInPageCount,
+        diapasone : state.users.diapasone,
+        diapasoneStart : state.users.diapasoneStart
     }
 
 }
@@ -18,7 +20,7 @@ const mapDispatchToProps = (dispatch) => {
         deleteFriend : (id) => dispatch(deleteFriendAT(id)),
         setUsers : (users) => dispatch(setUsersAT(users)),
         setTotalUserCount : (totalCount) => dispatch(setTotalUserCountAC(totalCount)),
-        setPage : (pageNumber) => dispatch(setPageAC(pageNumber))
+        setPage : (pageNumber) => dispatch(setPageAC(pageNumber)),
     }
 }
 
