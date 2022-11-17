@@ -15,7 +15,7 @@ const initialState = {
     diapasone: 5,
     diapasoneStart: 1,
     isFetching: false,
-    isFollowingInProgress : false
+    isFollowingInProgress : []
 }
 
 let usersReducer = (state = initialState, action) => {
@@ -93,10 +93,19 @@ let usersReducer = (state = initialState, action) => {
             }
 
         case SET_FOLLOWING_PROGRESS_STATUS_AT:
-            return {
-                ...state,
-                isFollowingInProgress: action.status
+            if(action.status === true){
+                return {
+                    ...state,
+                    isFollowingInProgress : [...state.isFollowingInProgress, action.userId]
+                }
             }
+            else {
+                return {
+                    ...state,
+                    isFollowingInProgress : [...state.isFollowingInProgress].splice(action.userId)
+                }
+            }
+
         default:
             return state;
     }
@@ -145,9 +154,10 @@ export let toggleFetching = (isFetching) => {
     }
 }
 
-export let setFollowingProgressStataus = (status) => {
+export let setFollowingProgressStataus = (userId, status) => {
     return {
         type: SET_FOLLOWING_PROGRESS_STATUS_AT,
+        userId,
         status
     }
 }
