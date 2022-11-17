@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addFriend, deleteFriend, setUsers, setTotalUserCount, setPage, setFollowingProgressStataus, getUsers, follow, unFollow} from '../../../redux/users-reducer';
+import { setPage, setFollowingProgressStataus, getUsers, follow, unFollow} from '../../../redux/users-reducer';
 import Users from './Users';
 import loadGif from '../../../Prefabs/Images/load.gif';
 
@@ -17,12 +17,14 @@ class UsersContainer extends React.Component {
         if (n < 1 ^ n > this.props.pagesCount) return;
         this.props.getUsers(this.props.itemsInPageCount, n);
     }
+    
     render() {
+        let p = this.props;
         return <>
-            {this.props.isFetching ? <img alt="Аватар" style={{width : '100px', heigth : '100px', position : 'absolute'}} src={loadGif}/> : null}
-            <Users users={this.props.users} onPageChanged={this.onPageChanged} selectedPage={this.props.selectedPage} pagesCount={this.props.pagesCount}
-                diapasoneStart={this.props.diapasoneStart} diapasone={this.props.diapasone} follow={this.props.follow} unFollow={this.props.unFollow}
-                setFollowingProgressStataus={this.props.setFollowingProgressStataus} isFollowingInProgress={this.props.isFollowingInProgress}/>
+            {p.isFetching ? <img alt="Аватар" style={{width : '100px', heigth : '100px', position : 'absolute'}} src={loadGif}/> : null}
+            <Users users={p.users} onPageChanged={this.onPageChanged} selectedPage={p.selectedPage} pagesCount={p.pagesCount}
+                diapasoneStart={p.diapasoneStart} diapasone={p.diapasone} follow={p.follow} unFollow={p.unFollow}
+                setFollowingProgressStataus={p.setFollowingProgressStataus} isFollowingInProgress={p.isFollowingInProgress}/>
         </>;
     };
 }
@@ -44,10 +46,6 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-    addFriend,
-    deleteFriend,
-    setUsers,
-    setTotalUserCount,
     setPage,
     setFollowingProgressStataus,
     getUsers,
