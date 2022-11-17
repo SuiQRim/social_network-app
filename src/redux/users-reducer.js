@@ -93,18 +93,15 @@ let usersReducer = (state = initialState, action) => {
             }
 
         case SET_FOLLOWING_PROGRESS_STATUS_AT:
-            if(action.status === true){
+
                 return {
                     ...state,
-                    isFollowingInProgress : [...state.isFollowingInProgress, action.userId]
+                    isFollowingInProgress : action.status 
+                    ?   [...state.isFollowingInProgress, action.userId]:
+                        state.isFollowingInProgress.filter(f => f !== action.userId)
                 }
-            }
-            else {
-                return {
-                    ...state,
-                    isFollowingInProgress : [...state.isFollowingInProgress].splice(action.userId)
-                }
-            }
+            
+            
 
         default:
             return state;

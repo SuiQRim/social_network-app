@@ -43,8 +43,8 @@ function User(props) {
 
             {
                 user.followed
-                    ? <button disabled={props.isFollowingInProgress.indexOf(user.id) !== -1} className={style.deleteFriend} onClick={deleteFriend}>Удалить из друзей</button>
-                    : <button disabled={props.isFollowingInProgress.indexOf(user.id) !== -1} className={style.addFriend} onClick={addFriend}>Добавить в друзья</button>
+                    ? <button disabled={props.isFollowingInProgress.some(f => f === user.id)} className={style.deleteFriend} onClick={deleteFriend}>Удалить из друзей</button>
+                    : <button disabled={props.isFollowingInProgress.some(f => f === user.id)} className={style.addFriend} onClick={addFriend}>Добавить в друзья</button>
             }
 
         </div>
