@@ -8,7 +8,9 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 class ProfileContainer extends React.Component{
     componentDidMount(){
         let userId = this.props.router.params.userId;
-        if(!userId) userId = 2;
+
+        if(!userId) userId = this.props.userId;
+        
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(responce => {
             this.props.setProfileInfo(responce.data);
         })
@@ -22,7 +24,8 @@ class ProfileContainer extends React.Component{
 const mapStateToProps = (state) => {
     return {
         profInfo : state.profile.information,
-        comments : state.profile.comments
+        comments : state.profile.comments,
+        userId : state.auth.userId
     }
 
 }
