@@ -15,7 +15,10 @@ class UsersContainer extends React.Component {
     }
     getUsers = (itemsInPage, selectedPage) => {
         this.props.toggleFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${itemsInPage}&page=${selectedPage}`).then(responce => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${itemsInPage}&page=${selectedPage}`,
+        {
+            withCredentials : true
+        }).then(responce => {
             this.props.setUsers(responce.data.items);
             this.props.setTotalUserCount(responce.data.totalCount);
             this.props.toggleFetching(false);
@@ -29,7 +32,7 @@ class UsersContainer extends React.Component {
     }
     render() {
         return <>
-            {this.props.isFetching ? <img style={{width : '100px', heigth : '100px', position : 'absolute'}} src={loadGif}/> : null}
+            {this.props.isFetching ? <img alt="Аватар" style={{width : '100px', heigth : '100px', position : 'absolute'}} src={loadGif}/> : null}
             <Users users={this.props.users} onPageChanged={this.onPageChanged} selectedPage={this.props.selectedPage} pagesCount={this.props.pagesCount}
                 diapasoneStart={this.props.diapasoneStart} diapasone={this.props.diapasone} addFriend={this.props.addFriend} deleteFriend={this.props.deleteFriend} />
         </>;
