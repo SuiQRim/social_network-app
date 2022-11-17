@@ -4,6 +4,7 @@ const setUsersActionType = "SET-USERS";
 const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
 const SET_PAGE_AT = "SET_PAGE";
 const TOGGLE_FETCHING_AT = "TOGGLE_FETCHING";
+const SET_FOLLOWING_PROGRESS_STATUS_AT = "SET_FOLLOWING_PROGRESS_STATUS";
 
 const initialState = {
     items: [],
@@ -13,7 +14,8 @@ const initialState = {
     selectedCount: 1,
     diapasone: 5,
     diapasoneStart: 1,
-    isFetching: false
+    isFetching: false,
+    isFollowingInProgress : false
 }
 
 let usersReducer = (state = initialState, action) => {
@@ -90,6 +92,11 @@ let usersReducer = (state = initialState, action) => {
                 isFetching : action.isFetching
             }
 
+        case SET_FOLLOWING_PROGRESS_STATUS_AT:
+            return {
+                ...state,
+                isFollowingInProgress: action.status
+            }
         default:
             return state;
     }
@@ -135,6 +142,13 @@ export let toggleFetching = (isFetching) => {
     return {
         type: TOGGLE_FETCHING_AT,
         isFetching: isFetching,
+    }
+}
+
+export let setFollowingProgressStataus = (status) => {
+    return {
+        type: SET_FOLLOWING_PROGRESS_STATUS_AT,
+        status
     }
 }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addFriend, deleteFriend, setUsers, setTotalUserCount, setPage, toggleFetching } from '../../../redux/users-reducer';
+import { addFriend, deleteFriend, setUsers, setTotalUserCount, setPage, toggleFetching, setFollowingProgressStataus} from '../../../redux/users-reducer';
 import Users from './Users';
 import loadGif from '../../../Prefabs/Images/load.gif';
 import { getUsers } from '../../../api/api';
@@ -37,7 +37,8 @@ class UsersContainer extends React.Component {
         return <>
             {this.props.isFetching ? <img alt="Аватар" style={{width : '100px', heigth : '100px', position : 'absolute'}} src={loadGif}/> : null}
             <Users users={this.props.users} onPageChanged={this.onPageChanged} selectedPage={this.props.selectedPage} pagesCount={this.props.pagesCount}
-                diapasoneStart={this.props.diapasoneStart} diapasone={this.props.diapasone} addFriend={this.props.addFriend} deleteFriend={this.props.deleteFriend} />
+                diapasoneStart={this.props.diapasoneStart} diapasone={this.props.diapasone} addFriend={this.props.addFriend} deleteFriend={this.props.deleteFriend}
+                setFollowingProgressStataus={this.props.setFollowingProgressStataus} isFollowingInProgress={this.props.isFollowingInProgress}/>
         </>;
     };
 }
@@ -52,7 +53,8 @@ const mapStateToProps = (state) => {
         itemsInPageCount: users.itemsInPageCount,
         diapasone: users.diapasone,
         diapasoneStart: users.diapasoneStart,
-        isFetching: users.isFetching
+        isFetching: users.isFetching,
+        isFollowingInProgress : users.isFollowingInProgress
     }
 
 }
@@ -63,7 +65,8 @@ const mapDispatchToProps = {
     setUsers,
     setTotalUserCount,
     setPage,
-    toggleFetching
+    toggleFetching,
+    setFollowingProgressStataus
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);

@@ -7,17 +7,26 @@ function User(props) {
     let user = props.user;
 
     let addFriend = () => {
+
+        props.setFollowingProgressStataus(true);
         follow(user.id).then(data => {
+
             if (data.resultCode === 0)
                 props.addFriend(user.id);
+
+            props.setFollowingProgressStataus(false);
         });
 
     }
 
     let deleteFriend = () => {
+        props.setFollowingProgressStataus(true);
        unFollow(user.id).then(data => {
+
             if (data.resultCode === 0)
                 props.deleteFriend(user.id);
+
+            props.setFollowingProgressStataus(false);
         });
     }
 
@@ -35,8 +44,8 @@ function User(props) {
 
             {
                 user.followed
-                    ? <button className={style.deleteFriend} onClick={deleteFriend}>Удалить из друзей</button>
-                    : <button className={style.addFriend} onClick={addFriend}>Добавить в друзья</button>
+                    ? <button disabled={props.isFollowingInProgress} className={style.deleteFriend} onClick={deleteFriend}>Удалить из друзей</button>
+                    : <button disabled={props.isFollowingInProgress} className={style.addFriend} onClick={addFriend}>Добавить в друзья</button>
             }
 
         </div>
