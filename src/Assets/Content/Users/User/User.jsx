@@ -1,34 +1,9 @@
 import { NavLink } from 'react-router-dom';
-import { follow, unFollow } from '../../../../api/api';
 import style from './User.module.css'
 
 function User(props) {
 
     let user = props.user;
-
-    let addFriend = () => {
-
-        props.setFollowingProgressStataus(user.id,true);
-        follow(user.id).then(data => {
-
-            if (data.resultCode === 0)
-                props.addFriend(user.id);
-
-                props.setFollowingProgressStataus(user.id,false);
-        });
-
-    }
-
-    let deleteFriend = () => {
-        props.setFollowingProgressStataus(user.id,true);
-       unFollow(user.id).then(data => {
-
-            if (data.resultCode === 0)
-                props.deleteFriend(user.id);
-                props.setFollowingProgressStataus(user.id,false);
-        });
-    }
-
     return (
         <div className={style.wrapper}>
 
@@ -43,8 +18,15 @@ function User(props) {
 
             {
                 user.followed
-                    ? <button disabled={props.isFollowingInProgress.some(f => f === user.id)} className={style.deleteFriend} onClick={deleteFriend}>Удалить из друзей</button>
-                    : <button disabled={props.isFollowingInProgress.some(f => f === user.id)} className={style.addFriend} onClick={addFriend}>Добавить в друзья</button>
+                    ? <button disabled={props.isFollowingInProgress.some(f => f === user.id)} className={style.deleteFriend}
+                        onClick={() => props.unFollow(user.id)}>
+                        Удалить из друзей
+                    </button>
+
+                    : <button disabled={props.isFollowingInProgress.some(f => f === user.id)}
+                        className={style.addFriend} onClick={() => props.follow(user.id)}>
+                        Добавить в друзья
+                    </button>
             }
 
         </div>

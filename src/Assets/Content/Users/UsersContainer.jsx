@@ -1,43 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addFriend, deleteFriend, setUsers, setTotalUserCount, setPage, toggleFetching, setFollowingProgressStataus} from '../../../redux/users-reducer';
+import { addFriend, deleteFriend, setUsers, setTotalUserCount, setPage, setFollowingProgressStataus, getUsers, follow, unFollow} from '../../../redux/users-reducer';
 import Users from './Users';
 import loadGif from '../../../Prefabs/Images/load.gif';
-import { getUsers } from '../../../api/api';
 
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-        
         if (this.props.users.length === 0) {
-
-            this.getUsers(this.props.itemsInPageCount, this.props.selectedPage);
-            this.props.toggleFetching(false);
+            this.props.getUsers(this.props.itemsInPageCount, this.props.selectedPage);
         }
-    }
-    getUsers = (itemsInPage, selectedPage) => {
-
-        this.props.toggleFetching(true);
-
-        getUsers(itemsInPage, selectedPage).then(data => {
-
-            this.props.setUsers(data.items);
-            this.props.setTotalUserCount(data.totalCount);
-            this.props.toggleFetching(false);      
-
-        })
     }
 
     onPageChanged = (n) => {
         this.props.setPage(n);
         if (n < 1 ^ n > this.props.pagesCount) return;
-        this.getUsers(this.props.itemsInPageCount, n);
+        this.props.getUsers(this.props.itemsInPageCount, n);
     }
     render() {
         return <>
             {this.props.isFetching ? <img alt="Аватар" style={{width : '100px', heigth : '100px', position : 'absolute'}} src={loadGif}/> : null}
             <Users users={this.props.users} onPageChanged={this.onPageChanged} selectedPage={this.props.selectedPage} pagesCount={this.props.pagesCount}
-                diapasoneStart={this.props.diapasoneStart} diapasone={this.props.diapasone} addFriend={this.props.addFriend} deleteFriend={this.props.deleteFriend}
+                diapasoneStart={this.props.diapasoneStart} diapasone={this.props.diapasone} follow={this.props.follow} unFollow={this.props.unFollow}
                 setFollowingProgressStataus={this.props.setFollowingProgressStataus} isFollowingInProgress={this.props.isFollowingInProgress}/>
         </>;
     };
@@ -65,8 +49,10 @@ const mapDispatchToProps = {
     setUsers,
     setTotalUserCount,
     setPage,
-    toggleFetching,
-    setFollowingProgressStataus
+    setFollowingProgressStataus,
+    getUsers,
+    follow,
+    unFollow
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);

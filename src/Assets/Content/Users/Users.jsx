@@ -5,7 +5,10 @@ import style from './Users.module.css'
 
 let Users = (props) => {
 
-    let users = props.users.map(u => <User key={u.id} setFollowingProgressStataus={props.setFollowingProgressStataus} isFollowingInProgress={props.isFollowingInProgress} user={u} addFriend={props.addFriend} deleteFriend={props.deleteFriend} />);
+    let users = props.users.map(u => <User key={u.id}
+        setFollowingProgressStataus={props.setFollowingProgressStataus} isFollowingInProgress={props.isFollowingInProgress} user={u}
+        follow={props.follow} unFollow={props.unFollow} />);
+
     return (
         <div>
             <div className={style.tabNav}>

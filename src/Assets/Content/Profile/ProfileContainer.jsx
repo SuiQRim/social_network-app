@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getActiveComTriggerAT, getAddCommentAT, setProfileInfo } from '../../../redux/profile-reducer';
 import Profile from './Profile';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { getProfile } from '../../../api/api';
+import {userApi } from '../../../api/api';
 
 class ProfileContainer extends React.Component{
     componentDidMount(){
@@ -12,7 +12,7 @@ class ProfileContainer extends React.Component{
 
         if(!userId) userId = this.props.userId;
 
-        getProfile(userId).then(data => {
+        userApi.getProfile(userId).then(data => {
             this.props.setProfileInfo(data);
         })
     }

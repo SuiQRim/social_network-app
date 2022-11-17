@@ -1,3 +1,5 @@
+import { userApi } from "../api/api";
+
 const addFriendActiontType = "ADD-FRIEND";
 const deleteFriendActiontType = "DELETE-FRIEND";
 const setUsersActionType = "SET-USERS";
@@ -159,5 +161,50 @@ export let setFollowingProgressStataus = (userId, status) => {
     }
 }
 
+export const getUsers = (itemsInPage, selectedPage) => {
+    return (dispatch) => {
+        
+        dispatch(toggleFetching(true));
+
+        userApi.getUsers(itemsInPage, selectedPage).then(data => {
+
+            dispatch(setUsers(data.items));
+            dispatch(setTotalUserCount(data.totalCount));
+            dispatch(toggleFetching(false));      
+
+        })   
+    }
+}
+
+
+export const follow = (userId) => {
+    return (dispatch) => {
+
+        dispatch(setFollowingProgressStataus(userId, true));
+        userApi.follow(userId).then(data => {
+
+            if (data.resultCode === 0)
+                dispatch(addFriend(userId));
+
+                dispatch(setFollowingProgressStataus(userId,false));
+        });
+
+    }
+}
+
+
+export const unFollow = (userId) => {
+    return (dispatch) => {
+        
+        dispatch(setFollowingProgressStataus(userId,true));
+        userApi.unFollow(userId).then(data => {
+
+            if (data.resultCode === 0)
+                dispatch(deleteFriend(userId));
+                dispatch(setFollowingProgressStataus(userId,false));
+        });
+
+    }
+}
 
 export default usersReducer
