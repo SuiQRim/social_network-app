@@ -1,3 +1,5 @@
+import { userApi } from "../api/api";
+
 const activeComTriggerActiontType = "ACTIVE-COMMENT-TRIGGER";
 const addCommentActiontType = "ADD-COMMENT";
 const SET_PROFILE_INFO_AT = "SET_PROFILE"
@@ -83,5 +85,16 @@ export const setProfileInfo = (profileInfo) => {
         profileInfo
     }
 }
+
+
+export const getProfile = (userId) => {
+    return (dispatch) => {
+        
+        userApi.getProfile(userId).then(data => {
+            dispatch(setProfileInfo(data));
+        })  
+    }
+}
+
 
 export default profileReducer

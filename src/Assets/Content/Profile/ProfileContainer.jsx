@@ -1,9 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getActiveComTriggerAT, getAddCommentAT, setProfileInfo } from '../../../redux/profile-reducer';
+import { getActiveComTriggerAT, getAddCommentAT, getProfile } from '../../../redux/profile-reducer';
 import Profile from './Profile';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import {userApi } from '../../../api/api';
 
 class ProfileContainer extends React.Component{
     componentDidMount(){
@@ -12,9 +11,7 @@ class ProfileContainer extends React.Component{
 
         if(!userId) userId = this.props.userId;
 
-        userApi.getProfile(userId).then(data => {
-            this.props.setProfileInfo(data);
-        })
+        this.props.getProfile(userId);
     }
     render(){
         return <Profile {...this.props} /> 
@@ -35,7 +32,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         addCom : () => dispatch(getAddCommentAT()),
         newComTrigger: (text) => dispatch(getActiveComTriggerAT(text)),
-        setProfileInfo : (profileInfo) => dispatch(setProfileInfo(profileInfo))
+        getProfile : (userId) => dispatch(getProfile(userId))
     }
 }
 
