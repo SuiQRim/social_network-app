@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { NavLink } from 'react-router-dom';
+import { follow, unFollow } from '../../../../api/api';
 import style from './User.module.css'
 
 function User(props) {
@@ -7,30 +7,16 @@ function User(props) {
     let user = props.user;
 
     let addFriend = () => {
-        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {},
-            {
-                withCredentials: true,
-                headers: {
-                    "API-KEY": 'use-youre-api-key'
-                }
-            },
-        ).then(responce => {
-            if (responce.data.resultCode === 0)
+        follow(user.id).then(data => {
+            if (data.resultCode === 0)
                 props.addFriend(user.id);
         });
 
     }
 
     let deleteFriend = () => {
-        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
-            {
-                withCredentials: true,
-                headers: {
-                    "API-KEY": 'use-youre-api-key'
-                }
-            },
-        ).then(responce => {
-            if (responce.data.resultCode === 0)
+       unFollow(user.id).then(data => {
+            if (data.resultCode === 0)
                 props.deleteFriend(user.id);
         });
     }

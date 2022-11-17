@@ -1,27 +1,30 @@
-import axios from 'axios';
 import React from 'react';
 import { connect } from 'react-redux';
 import { addFriend, deleteFriend, setUsers, setTotalUserCount, setPage, toggleFetching } from '../../../redux/users-reducer';
 import Users from './Users';
 import loadGif from '../../../Prefabs/Images/load.gif';
+import { getUsers } from '../../../api/api';
 
 class UsersContainer extends React.Component {
 
     componentDidMount() {
+        
         if (this.props.users.length === 0) {
+
             this.getUsers(this.props.itemsInPageCount, this.props.selectedPage);
             this.props.toggleFetching(false);
         }
     }
     getUsers = (itemsInPage, selectedPage) => {
+
         this.props.toggleFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${itemsInPage}&page=${selectedPage}`,
-        {
-            withCredentials : true
-        }).then(responce => {
-            this.props.setUsers(responce.data.items);
-            this.props.setTotalUserCount(responce.data.totalCount);
-            this.props.toggleFetching(false);
+
+        getUsers(itemsInPage, selectedPage).then(data => {
+
+            this.props.setUsers(data.items);
+            this.props.setTotalUserCount(data.totalCount);
+            this.props.toggleFetching(false);      
+
         })
     }
 
