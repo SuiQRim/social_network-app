@@ -18,7 +18,7 @@ function ProfileCommentsInput(props) {
   return (
     <div className={pciStyle.content}>
 
-      <a className={pciStyle.title}>Left a comment</a>
+      <p className={pciStyle.title}>Left a comment</p>
 
       <textarea onChange={newComChahge} ref={newCommentText} value={props.activeCom} className={pciStyle.input} />
 

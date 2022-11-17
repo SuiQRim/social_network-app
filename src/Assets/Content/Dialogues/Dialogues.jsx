@@ -1,4 +1,3 @@
-import mesStyle from './Dialogues.module.css'
 import Dialogue from './Dialogue/Dialogue';
 
 function Dialogues(props) {

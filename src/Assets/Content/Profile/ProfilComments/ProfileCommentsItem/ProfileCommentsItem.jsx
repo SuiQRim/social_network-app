@@ -5,16 +5,16 @@ function ProfileCommentsItem(props) {
     <div className={comStyle.item}>
 
       <div className={comStyle.senderIcon}>
-        <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSibRhC_l2NylzcKzyuNT8H2PnInA0l93Rg7AVfSJqzKw&s' />
+        <img alt='аватар' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSibRhC_l2NylzcKzyuNT8H2PnInA0l93Rg7AVfSJqzKw&s' />
       </div>
       
       <div className={comStyle.senderName}>
-        <a>{props.name}</a>
+        <p>{props.name}</p>
       </div>
 
-      <a className={comStyle.content}>
+      <p className={comStyle.content}>
         {props.text}
-      </a>
+      </p>
 
     </div>
   );

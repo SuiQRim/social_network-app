@@ -1,6 +1,5 @@
 import Message from './Message/Message';
 import MessageInput from './MessageInput/MessageInput';
-import mesStyle from './Messages.module.css'
 
 function Messages(props) {
 

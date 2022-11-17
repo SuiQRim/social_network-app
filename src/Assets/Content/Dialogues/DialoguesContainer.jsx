@@ -1,4 +1,3 @@
-import mesStyle from './Dialogues.module.css'
 import Dialogues from './Dialogues';
 import { getNewMesTriggerAT, getSendMessageAT } from '../../../redux/messages-reducer';
 import { connect } from 'react-redux';
