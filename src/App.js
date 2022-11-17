@@ -4,7 +4,7 @@ import DialoguesContainer from './Assets/Content/Dialogues/DialoguesContainer';
 import ProfileContainer from './Assets/Content/Profile/ProfileContainer';
 import TapeContainer from './Assets/Content/Tape/TapeContainer';
 import UsersContainer from './Assets/Content/Users/UsersContainer';
-import Header from './Assets/Header/Header';
+import HeaderContainer from './Assets/Header/HeaderContainer';
 import Navigation from './Assets/MainNavigationMenu/Navigation';
 
 
@@ -13,7 +13,7 @@ function App() {
     <BrowserRouter>
       <div className='wrapper'>
         <div className="header">
-          <Header />
+          <HeaderContainer />
         </div>
 
         <div className="navigation">
