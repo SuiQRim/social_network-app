@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getActiveComTriggerAT, getAddCommentAT, getProfile } from '../../../redux/profile-reducer';
 import Profile from './Profile';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import withRedirectToLogin from '../../../hoc/withRedirectToLogin';
+import withRouter from '../../../hoc/withRouter';
 
 class ProfileContainer extends React.Component{
     componentDidMount(){
@@ -39,16 +39,8 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-function withRouter(Component) {
-	function ComponentWithRouterProp(props) {
-		let location = useLocation();
-		let navigate = useNavigate();
-		let params = useParams();
-		return <Component {...props} router={{ location, navigate, params }} />;
-	}
-	return ComponentWithRouterProp;
-}
-
 let AuthorCoponent = withRedirectToLogin(ProfileContainer);
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(AuthorCoponent));
+let WithRouterComponent = withRouter(AuthorCoponent);
+
+export default connect(mapStateToProps, mapDispatchToProps)(WithRouterComponent);
