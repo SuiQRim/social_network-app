@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import DialoguesContainer from './Assets/Content/Dialogues/DialoguesContainer';
-import ProfileContainer from './Assets/Content/Profile/ProfileContainer';
-import TapeContainer from './Assets/Content/Tape/TapeContainer';
-import UsersContainer from './Assets/Content/Users/UsersContainer';
-import HeaderContainer from './Assets/Header/HeaderContainer';
-import Navigation from './Assets/MainNavigationMenu/Navigation';
+import DialoguesContainer from './Components/Content/Dialogues/DialoguesContainer';
+import ProfileContainer from './Components/Content/Profile/ProfileContainer';
+import TapeContainer from './Components/Content/Tape/TapeContainer';
+import UsersContainer from './Components/Content/Users/UsersContainer';
+import HeaderContainer from './Components/Header/HeaderContainer';
+import Navigation from './Components/MainNavigationMenu/Navigation';
 
 
 function App() {
