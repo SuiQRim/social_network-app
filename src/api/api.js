@@ -28,3 +28,11 @@ export const userApi = {
     
 }
 
+export const authApi = {
+
+    async signIn () {
+        const responce = await instance.get(`auth/me/`);
+        return responce.data;
+    }
+
+}
