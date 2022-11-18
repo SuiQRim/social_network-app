@@ -3,7 +3,7 @@ import MessageInput from './MessageInput/MessageInput';
 
 function Messages(props) {
 
-  let messages = props.messages.map(m => <Message message={m.text} />);
+  let messages = props.messages.map(m => <Message key={m.id} message={m.text} />);
 
   return (
     <div>

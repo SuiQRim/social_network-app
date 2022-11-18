@@ -3,7 +3,7 @@ import TapeItem from './TapeItem/TapeItem';
 
 function Tape(props) {
 
-    let posts = props.tape.map(p => <TapeItem post={p}/>)
+    let posts = props.tape.map(p => <TapeItem key={p.id} post={p}/>)
 
     return (
         <div className={tStyle.header}>
