@@ -1,4 +1,6 @@
 import { connect } from 'react-redux';
+import { compose } from 'redux';
+import withRedirectToLogin from '../../../hoc/withRedirectToLogin';
 import Tape from './Tape';
 
 const mapStateToProps = (state) => {
@@ -12,7 +14,9 @@ const mapDispatchToProps = (dispatch) => {
     return {}
 }
 
-let TapeContainer = connect(mapStateToProps, mapDispatchToProps)(Tape);
 
 
-export default TapeContainer;
+export default compose(
+    withRedirectToLogin,
+    connect(mapStateToProps, mapDispatchToProps))
+    (Tape);

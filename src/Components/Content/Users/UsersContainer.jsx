@@ -4,6 +4,7 @@ import { setPage, setFollowingProgressStataus, getUsers, follow, unFollow } from
 import Users from './Users';
 import loadGif from '../../../Prefabs/Images/load.gif';
 import withRedirectToLogin from '../../../hoc/withRedirectToLogin';
+import { compose } from 'redux';
 
 class UsersContainer extends React.Component {
 
@@ -60,6 +61,9 @@ const mapDispatchToProps = {
 
 let AuthorCoponent = withRedirectToLogin(UsersContainer);
 
-export default connect(mapStateToProps, mapDispatchToProps)(AuthorCoponent);
+export default compose(
+    withRedirectToLogin, 
+    connect(mapStateToProps, mapDispatchToProps))
+    (AuthorCoponent);
 
 

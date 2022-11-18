@@ -4,38 +4,39 @@ import { getActiveComTriggerAT, getAddCommentAT, getProfile } from '../../../red
 import Profile from './Profile';
 import withRedirectToLogin from '../../../hoc/withRedirectToLogin';
 import withRouter from '../../../hoc/withRouter';
+import { compose } from 'redux';
 
-class ProfileContainer extends React.Component{
-    componentDidMount(){
-        
+class ProfileContainer extends React.Component {
+    componentDidMount() {
+
         let userId = this.props.router.params.userId;
 
-        if(!userId) userId = this.props.userId;
+        if (!userId) userId = this.props.userId;
 
         this.props.getProfile(userId);
     }
 
-    render(){
-        return <Profile {...this.props}/>;  
+    render() {
+        return <Profile {...this.props} />;
     }
 }
 
 
 const mapStateToProps = (state) => {
     return {
-        profInfo : state.profile.information,
-        comments : state.profile.comments,
-        userId : state.auth.userId,
-        isLogin : state.auth.isLogin
+        profInfo: state.profile.information,
+        comments: state.profile.comments,
+        userId: state.auth.userId,
+        isLogin: state.auth.isLogin
     }
 
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addCom : () => dispatch(getAddCommentAT()),
+        addCom: () => dispatch(getAddCommentAT()),
         newComTrigger: (text) => dispatch(getActiveComTriggerAT(text)),
-        getProfile : (userId) => dispatch(getProfile(userId))
+        getProfile: (userId) => dispatch(getProfile(userId))
     }
 }
 
@@ -43,4 +44,8 @@ let AuthorCoponent = withRedirectToLogin(ProfileContainer);
 
 let WithRouterComponent = withRouter(AuthorCoponent);
 
-export default connect(mapStateToProps, mapDispatchToProps)(WithRouterComponent);
+export default compose(
+    withRedirectToLogin,
+    withRouter,
+    connect(mapStateToProps, mapDispatchToProps))
+    (WithRouterComponent);
