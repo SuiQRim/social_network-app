@@ -2,13 +2,13 @@ import Dialogues from './Dialogues';
 import { getNewMesTriggerAT, getSendMessageAT } from '../../../redux/messages-reducer';
 import { connect } from 'react-redux';
 import React from 'react';
-import { Navigate } from 'react-router-dom';
+import withRedirectToLogin from '../../../hoc/withRedirectToLogin';
 
 
 class DialoguesContainer extends React.Component {
 
     render(){
-        return this.props.isLogin ?  <Dialogues {...this.props}/> : <Navigate to='/login'/>   
+        return <Dialogues {...this.props}/>;  
     }
 }
 
@@ -26,5 +26,6 @@ const mapDispatchToProps = (dispatch) =>{
         sendMessage : (chatId) => dispatch(getSendMessageAT(chatId))
     }
 }
+let AuthorCoponent = withRedirectToLogin(DialoguesContainer);
 
-export default connect(mapStateToProps, mapDispatchToProps)(DialoguesContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(AuthorCoponent);

@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getActiveComTriggerAT, getAddCommentAT, getProfile } from '../../../redux/profile-reducer';
 import Profile from './Profile';
-import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import withRedirectToLogin from '../../../hoc/withRedirectToLogin';
 
 class ProfileContainer extends React.Component{
     componentDidMount(){
@@ -15,8 +16,7 @@ class ProfileContainer extends React.Component{
     }
 
     render(){
-
-        return this.props.isLogin ?  <Profile {...this.props}/> : <Navigate to='/login'/>  
+        return <Profile {...this.props}/>;  
     }
 }
 
@@ -48,4 +48,7 @@ function withRouter(Component) {
 	}
 	return ComponentWithRouterProp;
 }
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ProfileContainer));
+
+let AuthorCoponent = withRedirectToLogin(ProfileContainer);
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(AuthorCoponent));
