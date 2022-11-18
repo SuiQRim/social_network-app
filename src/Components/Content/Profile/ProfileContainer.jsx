@@ -7,17 +7,27 @@ import withRouter from '../../../hoc/withRouter';
 import { compose } from 'redux';
 
 class ProfileContainer extends React.Component {
+
+    isMyAccount = false;
+    profileId = null
+
+    constructor(props) {
+        super(props);
+        this.profileId = props.router.params.userId;
+
+        if (!this.profileId) {
+            this.profileId = props.userId
+            this.isMyAccount = true;
+        };
+
+    }
+
     componentDidMount() {
-
-        let userId = this.props.router.params.userId;
-
-        if (!userId) userId = this.props.userId;
-
-        this.props.getProfile(userId);
+        this.props.getProfile(this.profileId);
     }
 
     render() {
-        return <Profile {...this.props} />;
+        return <Profile {...this.props} isMyAccount={this.isMyAccount} />;
     }
 }
 
