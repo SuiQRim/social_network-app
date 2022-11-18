@@ -4,7 +4,8 @@ const SET_USER_DATA_AT = "SET_USER_DATA";
 let initialState = {
     userId: null,
     email: null,
-    login: null
+    login: null,
+    isLogin : false
 }
 
 let authReducer = (state = initialState, action) => {
@@ -30,7 +31,8 @@ export const setUserData = (userId, email, login) => (
         data: {
             userId,
             email,
-            login
+            login,
+            isLogin : true
         }
     })
 

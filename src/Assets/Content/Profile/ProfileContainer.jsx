@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getActiveComTriggerAT, getAddCommentAT, getProfile } from '../../../redux/profile-reducer';
 import Profile from './Profile';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
 
 class ProfileContainer extends React.Component{
     componentDidMount(){
@@ -13,8 +13,10 @@ class ProfileContainer extends React.Component{
 
         this.props.getProfile(userId);
     }
+
     render(){
-        return <Profile {...this.props} /> 
+
+        return this.props.isLogin ?  <Profile {...this.props}/> : <Navigate to='/login'/>  
     }
 }
 
@@ -23,7 +25,8 @@ const mapStateToProps = (state) => {
     return {
         profInfo : state.profile.information,
         comments : state.profile.comments,
-        userId : state.auth.userId
+        userId : state.auth.userId,
+        isLogin : state.auth.isLogin
     }
 
 }
