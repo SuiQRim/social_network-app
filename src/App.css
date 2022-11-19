@@ -28,3 +28,19 @@
 .void{
     grid-area: void;
 }
+
+button {
+    border: 0px;
+    border-radius: 8px;
+    color: black;
+    background: #a9bcf8;
+}
+
+button:hover {
+    background-color: #b2c4fc;
+}
+
+button:active{
+    background-color: #a3b4ec;
+}
+

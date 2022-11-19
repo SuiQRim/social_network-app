@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getActiveComTriggerAT, getAddCommentAT, getProfile } from '../../../redux/profile-reducer';
+import { getActiveComTriggerAT, getAddCommentAT, getProfile, editStatus, getStatus } from '../../../redux/profile-reducer';
 import Profile from './Profile';
 import withRedirectToLogin from '../../../hoc/withRedirectToLogin';
 import withRouter from '../../../hoc/withRouter';
@@ -12,6 +12,7 @@ class ProfileContainer extends React.Component {
     profileId = null
 
     constructor(props) {
+        
         super(props);
         this.profileId = props.router.params.userId;
 
@@ -24,6 +25,7 @@ class ProfileContainer extends React.Component {
 
     componentDidMount() {
         this.props.getProfile(this.profileId);
+        this.props.getStatus(this.profileId);
     }
 
     render() {
@@ -35,9 +37,10 @@ class ProfileContainer extends React.Component {
 const mapStateToProps = (state) => {
     return {
         profInfo: state.profile.information,
+        status: state.profile.status,
         comments: state.profile.comments,
         userId: state.auth.userId,
-        isLogin: state.auth.isLogin
+        isLogin: state.auth.isLogin,
     }
 
 }
@@ -46,16 +49,14 @@ const mapDispatchToProps = (dispatch) => {
     return {
         addCom: () => dispatch(getAddCommentAT()),
         newComTrigger: (text) => dispatch(getActiveComTriggerAT(text)),
-        getProfile: (userId) => dispatch(getProfile(userId))
+        getProfile: (userId) => dispatch(getProfile(userId)),
+        editStatus: (status) => dispatch(editStatus(status)),
+        getStatus: (id) => dispatch(getStatus(id))
     }
 }
-
-let AuthorCoponent = withRedirectToLogin(ProfileContainer);
-
-let WithRouterComponent = withRouter(AuthorCoponent);
 
 export default compose(
     withRedirectToLogin,
     withRouter,
     connect(mapStateToProps, mapDispatchToProps))
-    (WithRouterComponent);
+    (ProfileContainer);

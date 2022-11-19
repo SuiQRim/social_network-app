@@ -5,36 +5,48 @@ class ProfileInfo extends React.Component {
 
   state = {
     isStatusEdit: false,
-    aboutMe: ""
+    status: ""
   }
 
-  editStatus = (value) => {
+  switchStatusEditor = (value) => {
     this.setState(
       {
         isStatusEdit: value,
-        aboutMe : value ? this.props.profInfo.aboutMe : this.state.aboutMe 
+        status: this.props.status
       })
 
   }
 
+  statusRef = React.createRef();
+
+  statusTrigger = () =>
+    this.setState({ status: this.statusRef.current.value })
+
+
+  editStatus = () => {
+    this.props.editStatus(this.state.status);
+    this.switchStatusEditor(false);
+  }
+
+  
+  cancelStatus = () => {
+    this.switchStatusEditor(false);
+  }
+
+  auto_grow = () => {
+    let element = this.statusRef.current;
+    element.style.height = "5px";
+    element.style.height = (element.scrollHeight) + "px";
+  }
 
   render() {
-
-    let aboutMeRef = React.createRef();
-    let onAboutMeChanghed = () => {
-      if(this.state.isStatusEdit)
-        this.setState({
-          aboutMe: aboutMeRef.current.value
-        })
-    }
-
+    const statusMaxLenght = 300;
     const { props, } = this;
 
-    if (!props.profInfo) {
-      return (<div></div>)
-    }
+    if (!props.profInfo) return (<div></div>)
 
     return (
+
       <div className={s.body}>
 
         <div className={s.avatar}>
@@ -47,21 +59,31 @@ class ProfileInfo extends React.Component {
             {props.profInfo.fullName}
           </div>
 
-          <div className={s.about}>
+          <div className={s.statusInfo}>
 
-            <div onDoubleClick={() => this.editStatus(true)}>{props.profInfo.aboutMe} ЫЫЫЫЫЫ</div>
+            <div className={s.status} onDoubleClick={() => this.switchStatusEditor(true)}>{props.status}</div>
 
             {this.state.isStatusEdit && this.props.isMyAccount &&
 
-              <div className={s.aboutPanel}>
+              <div className={s.statusPanel}>
 
-                <textarea className={s.aboutInput} ref={aboutMeRef} value={this.state.aboutMe} 
-                          onChange={onAboutMeChanghed} onBlur={() => this.editStatus(false)}/>
+                <textarea className={s.statusInput} ref={this.statusRef} value={this.state.status ?? ''}
+                  onChange={this.statusTrigger} maxLength={statusMaxLenght} onInput={this.auto_grow} />
 
-                <button className={s.saveAbout}>Сохранить</button>
+                <button className={s.statusButton} onClick={this.editStatus}>✔</button>
+                <button className={s.statusButton} onClick={this.cancelStatus}>✖</button>
+
               </div>
             }
           </div>
+
+          <div className={s.aboutInfo}>
+
+            <div className={s.about}>
+              {props.profInfo.aboutMe}
+            </div>
+          </div>
+
 
         </div>
 

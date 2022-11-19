@@ -13,10 +13,6 @@ export const userApi = {
         const responce = await instance.get(`users?count=${itemsInPage}&page=${selectedPage}`);
         return responce.data;
     },
-    async getProfile (userId) {
-        const responce = await instance.get(`profile/${userId}`);
-        return responce.data;
-    },
     async follow (userId) {
         const responce = await instance.post(`follow/${userId}`, {});
         return responce.data;
@@ -26,6 +22,23 @@ export const userApi = {
         return responce.data;
     },
     
+}
+
+export const profileApi = {
+    async getProfile (userId) {
+        const responce = await instance.get(`profile/${userId}`);
+        return responce.data;
+    },
+
+    async getStatus (id) {
+        const responce = await instance.get(`profile/status/${id}`);
+        return responce.data;
+    },
+
+    async editStatus (status) {
+        const responce = await instance.put(`profile/status`,{status});
+        return responce.data;
+    },
 }
 
 export const authApi = {
