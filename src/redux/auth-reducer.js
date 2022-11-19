@@ -48,7 +48,17 @@ export const signIn = () => {
             }
         })
     }
+}
 
+export const login = (email, password, rememberMe) => {
+    return (dispatch) => {
+        authApi.login(email, password, rememberMe).then( data => {
+            if(data.resultCode === 0) {
+                console.log('Вход выполнен')
+            }
+        })
+    }
+    
 }
 export default authReducer
 

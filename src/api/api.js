@@ -46,6 +46,11 @@ export const authApi = {
     async signIn () {
         const responce = await instance.get(`auth/me/`);
         return responce.data;
+    },
+
+    async login (email, password, rememberMe) {
+        const responce = await instance.post(`auth/login`, {email, password, rememberMe});
+        return responce.data;
     }
 
 }
