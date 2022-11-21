@@ -19,14 +19,30 @@
     min-height: 68px;
 }
 
-.sendButton {
-    margin-top: 10px;
-    margin-bottom: 20px;
-    overflow: auto;
+.errorInput {
+    border: solid red;
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 20px;
+    height: 80px;
+    padding: 10px;
+    resize: vertical;
+    min-height: 68px;
 }
-.sendButton button{
+
+.error {
+    float: left;
+    font-size: 18px;
+    margin: 10px 0px;
+    padding: 10px 0px;
+    color: red;
+}
+
+.sendButton{
+    margin: 10px 0px;
+    float: right;
     border-radius: 8px;
     padding: 10px 40px;
     font-size: 18px;
-    float: right;
 }

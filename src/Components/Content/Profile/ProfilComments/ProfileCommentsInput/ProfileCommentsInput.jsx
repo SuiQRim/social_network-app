@@ -1,30 +1,44 @@
 import React from 'react';
-import pciStyle from './ProfileCommentsInput.module.css'
+import s from './ProfileCommentsInput.module.css'
+import { Formik } from 'formik';
+import * as yup from 'yup'
 
 function ProfileCommentsInput(props) {
 
-  let newCommentText = React.createRef();
-
-  let newComChahge = () => 
-  {
-    props.newComTrigger(newCommentText.current.value);
-  }
-
-  let addNewCom = () => {
-
-    props.addCom();
-  }
+  const validationsScheme = yup.object().shape({
+    text: yup.string()
+      .typeError('Должна быть строка')
+      .max(100, 'Слишком длинный текст (макс 100 симв.)')
+  })
 
   return (
-    <div className={pciStyle.content}>
+    <div className={s.content}>
 
-      <p className={pciStyle.title}>Left a comment</p>
+      <Formik
+        initialValues={{ text: '' }}
+        validationSchema={validationsScheme}
+        onSubmit={props.addCom}>
 
-      <textarea onChange={newComChahge} ref={newCommentText} value={props.activeCom} className={pciStyle.input} />
+        {({ values, errors, touched, handleChange,
+          handleBlur, isValid, handleSubmit, dirty }) => (
+          <div>
+            <p className={s.title}>Left a comment</p>
 
-      <div className={pciStyle.sendButton}>
-        <button onClick={addNewCom}>Отправить</button>
-      </div>
+            <textarea
+              name='text'
+              onChange={handleChange}
+              value={values.text}
+              className={!errors.text ? s.input : s.errorInput} />
+
+            {errors.text && <div className={s.error}>{errors.text}</div>}
+
+            <button type='submit' className={s.sendButton} onClick={handleSubmit}>Отправить</button>
+
+
+          </div>
+        )}
+      </Formik>
+
 
     </div>
   );

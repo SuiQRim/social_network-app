@@ -1,6 +1,5 @@
 import { profileApi } from "../api/api";
 
-const activeComTriggerActiontType = "ACTIVE-COMMENT-TRIGGER";
 const addCommentActiontType = "ADD-COMMENT";
 const SET_PROFILE_INFO_AT = "SET_PROFILE"
 const SET_STATUS_AT = "SET_STATUS"
@@ -31,30 +30,21 @@ let initialState = {
                 text: "комментарии4"
             }
         ],
-    activeComment: ""
-
 }
 
 let profileReducer = (state = initialState, action) => {
 
     switch (action.type) {
-
-        case activeComTriggerActiontType:
-            return {
-                ...state,
-                activeComment: action.text
-            }
-
         case addCommentActiontType:
+            debugger;
             return {
                 ...state,
                 comments: [...state.comments, {
                     id: state.comments.length,
-                    name: state.name,
-                    text: state.activeComment,
+                    name: state.information.fullName,
+                    text: action.text,
 
                 }],
-                activeComment: state.activeComment
             };
 
         case SET_PROFILE_INFO_AT:
@@ -75,16 +65,10 @@ let profileReducer = (state = initialState, action) => {
     }
 }
 
-export const getActiveComTriggerAT = (text) => {
+export const addComment = (text) => {
     return {
-        type: activeComTriggerActiontType,
-        text: text
-    }
-}
-
-export const getAddCommentAT = () => {
-    return {
-        type: addCommentActiontType
+        type: addCommentActiontType,
+        text
     }
 }
 

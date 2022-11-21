@@ -3,7 +3,7 @@ import ProfileCommentsInput from "./ProfileCommentsInput/ProfileCommentsInput";
 import ProfileCommentsItem from "./ProfileCommentsItem/ProfileCommentsItem";
 
 function ProfileComments(props) {
-
+  
   let listOfComment = props.comments.map(com => <ProfileCommentsItem key={com.id} name={com.name} text={com.text} />);
 
 

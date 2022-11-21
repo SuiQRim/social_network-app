@@ -1,9 +1,14 @@
 import { Formik } from 'formik';
+import * as yup from 'yup'
 import s from './Login.module.css'
 
 
 let Login = (props) => {
-
+    const validationsScheme = yup.object().shape({
+        email: yup.string().typeError('Должна быть строка').required('Объязательное поле'),
+        password: yup.string().typeError('Должна быть строка').required('Объязательное поле'),
+        rememberMe: yup.bool().typeError('Какое-то мясо'),
+    })
     return (
         <div className={s.form}>
             <div className={s.formik}>
@@ -14,7 +19,7 @@ let Login = (props) => {
                         rememberMe: false,
                         captcha: false,
                     }}
-                    validationSchema={props.validationsScheme}
+                    validationSchema={validationsScheme}
                     validateOnBlur
                     onSubmit={props.login}>
 

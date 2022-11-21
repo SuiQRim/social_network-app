@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getActiveComTriggerAT, getAddCommentAT, getProfile, editStatus, getStatus } from '../../../redux/profile-reducer';
+import { addComment, getProfile, editStatus, getStatus } from '../../../redux/profile-reducer';
 import Profile from './Profile';
 import withRedirectToLogin from '../../../hoc/withRedirectToLogin';
 import withRouter from '../../../hoc/withRouter';
@@ -11,6 +11,9 @@ class ProfileContainer extends React.Component {
     isMyAccount = false;
     profileId = null
 
+    addCom = (values) => {
+        this.props.addCom(values.text);
+    }
     constructor(props) {
         
         super(props);
@@ -29,7 +32,7 @@ class ProfileContainer extends React.Component {
     }
 
     render() {
-        return <Profile {...this.props} isMyAccount={this.isMyAccount} />;
+        return <Profile {...this.props} addCom={this.addCom} isMyAccount={this.isMyAccount} />;
     }
 }
 
@@ -47,8 +50,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addCom: () => dispatch(getAddCommentAT()),
-        newComTrigger: (text) => dispatch(getActiveComTriggerAT(text)),
+        addCom: (text) => dispatch(addComment(text)),
         getProfile: (userId) => dispatch(getProfile(userId)),
         editStatus: (status) => dispatch(editStatus(status)),
         getStatus: (id) => dispatch(getStatus(id))
