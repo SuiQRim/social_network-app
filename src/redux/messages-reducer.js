@@ -1,17 +1,10 @@
 const sendMessageActionType = "SEND-MESSAGE";
-const newMesTriggerActionType = "NEW-MESSAGE-TRIGGER";
 
-export const getSendMessageAT = (id) => {
+export const getSendMessageAT = (id, message) => {
     return {
         type: sendMessageActionType,
-        id: id,
-    }
-}
-export const getNewMesTriggerAT = (id, text) => {
-    return {
-        type: newMesTriggerActionType,
-        id: id,
-        text: text
+        id,
+        message
     }
 }
 
@@ -42,7 +35,6 @@ let initialState = [
                 text: "Супер ультра мега хорош"
             }
         ],
-        activeMessage: ""
 
     },
     {
@@ -58,7 +50,6 @@ let initialState = [
                 text: "Го развалим типов"
             }
         ],
-        activeMessage: ""
     }
 
 ]
@@ -74,20 +65,11 @@ let messagesReducer = (state = initialState, action) => {
                         ...u,
                         messages: [
                             ...u.messages,
-                            { text: u.activeMessage }
+                            {
+                                id: u.messages.length,
+                                text: action.message
+                            }
                         ],
-                        activeMessage: ""
-                    }
-                }
-                return u;
-            });
-
-        case newMesTriggerActionType:
-            return state.map(u => {
-                if (u.id === action.id) {
-                    return {
-                        ...u,
-                        activeMessage: action.text
                     }
                 }
                 return u;

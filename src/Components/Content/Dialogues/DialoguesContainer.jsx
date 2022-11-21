@@ -1,5 +1,5 @@
 import Dialogues from './Dialogues';
-import { getNewMesTriggerAT, getSendMessageAT } from '../../../redux/messages-reducer';
+import { getSendMessageAT } from '../../../redux/messages-reducer';
 import { connect } from 'react-redux';
 import React from 'react';
 import withRedirectToLogin from '../../../hoc/withRedirectToLogin';
@@ -22,8 +22,7 @@ const mapStateToProps = (state) =>{
 
 const mapDispatchToProps = (dispatch) =>{
     return {
-        newMesTrigger: (charId, text) =>  dispatch(getNewMesTriggerAT(charId, text)),
-        sendMessage : (chatId) => dispatch(getSendMessageAT(chatId))
+        sendMessage : (chatId, message) => dispatch(getSendMessageAT(chatId, message))
     }
 }
 let AuthorCoponent = withRedirectToLogin(DialoguesContainer);
