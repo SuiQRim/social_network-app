@@ -35,13 +35,19 @@
     padding: 10px;
 }
 
+.statusPanelError,
 .statusPanel {
+    border: solid 2px #e2e2e2;
     border-radius: 8px;
     padding: 10px;
     width: 40%;
     position: absolute;
     background: #e2e2e2;
     margin-top: 10px;
+}
+
+.statusPanelError {
+    border: solid 2px red;
 }
 
 .statusInput {
@@ -57,7 +63,6 @@
     resize: none;
     overflow: hidden;
 }
-
 
 
 .statusButton {

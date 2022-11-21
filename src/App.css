@@ -44,3 +44,6 @@ button:active{
     background-color: #a3b4ec;
 }
 
+button:disabled {
+    background-color: #99a1b9;
+}

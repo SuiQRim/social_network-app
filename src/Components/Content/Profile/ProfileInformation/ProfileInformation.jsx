@@ -1,38 +1,30 @@
 import React from 'react';
 import s from './ProfileInformation.module.css'
+import { Formik } from 'formik';
+import * as yup from 'yup'
 
 class ProfileInfo extends React.Component {
 
   state = {
-    isStatusEdit: false,
-    status: ""
+    status: false,
   }
 
   switchStatusEditor = (value) => {
     this.setState(
       {
         isStatusEdit: value,
-        status: this.props.status
       })
-
   }
 
-  statusRef = React.createRef();
-
-  statusTrigger = () =>
-    this.setState({ status: this.statusRef.current.value })
-
-
-  editStatus = () => {
-    this.props.editStatus(this.state.status);
+ 
+  editStatus = (values) => {
+    this.props.editStatus(values.status);
     this.switchStatusEditor(false);
   }
 
+  cancelStatus = () => this.switchStatusEditor(false);
   
-  cancelStatus = () => {
-    this.switchStatusEditor(false);
-  }
-
+  statusRef = React.createRef();
   auto_grow = () => {
     let element = this.statusRef.current;
     element.style.height = "5px";
@@ -40,8 +32,14 @@ class ProfileInfo extends React.Component {
   }
 
   render() {
-    const statusMaxLenght = 300;
-    const { props, } = this;
+
+    const validationsScheme = yup.object().shape({
+      status: yup.string()
+        .typeError('Должна быть строка')
+        .max(300, 'Слишком длинный текст (макс 300 симв.)')
+    })
+
+    const {props} = this;
 
     if (!props.profInfo) return (<div></div>)
 
@@ -65,15 +63,33 @@ class ProfileInfo extends React.Component {
 
             {this.state.isStatusEdit && this.props.isMyAccount &&
 
-              <div className={s.statusPanel}>
+              <Formik
+                initialValues={{ status: props.status}}
+                onSubmit={this.editStatus}
+                validationSchema={validationsScheme}>
 
-                <textarea className={s.statusInput} ref={this.statusRef} value={this.state.status ?? ''}
-                  onChange={this.statusTrigger} maxLength={statusMaxLenght} onInput={this.auto_grow} />
+                {({ values, errors, touched, handleChange,
+                  handleBlur, isValid, handleSubmit, dirty }) => (
+                    
+                  <div className={errors.status ? s.statusPanelError : s.statusPanel}>
 
-                <button className={s.statusButton} onClick={this.editStatus}>✔</button>
-                <button className={s.statusButton} onClick={this.cancelStatus}>✖</button>
+                    <textarea
+                      ref={this.statusRef}
+                      onChange={handleChange}
+                      name='status'
+                      className={s.statusInput}
+                      value={values.status}
+                      onInput={this.auto_grow}/>
+                  
 
-              </div>
+                    {errors.status && <div style={{color : 'red',margin : '10px 0px'}}>{errors.status}</div>}
+                    <button className={s.statusButton} type='sumbit' onClick={handleSubmit} disabled={!isValid}>✔</button>
+                    
+                    <button className={s.statusButton} onClick={this.cancelStatus}>✖</button>
+
+                  </div>
+                )}
+              </Formik>
             }
           </div>
 
