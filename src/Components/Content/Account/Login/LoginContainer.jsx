@@ -6,8 +6,8 @@ import Login from './Login';
 
 class LoginContainer extends Component {
 
-    login = (values) => {
-        this.props.login(values.email, values.password, values.rememberMe);
+    login = (values, {setErrors}) => {
+        this.props.login(values.email, values.password, values.rememberMe, setErrors);
     }
 
     render() {

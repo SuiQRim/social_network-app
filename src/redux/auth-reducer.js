@@ -50,7 +50,7 @@ export const signIn = () => {
     }
 }
 
-export const login = (email, password, rememberMe) => {
+export const login = (email, password, rememberMe, setErrors) => {
     return (dispatch) => {
         authApi.login(email, password, rememberMe).then( data => {
             if(data.resultCode === 0) {
@@ -60,6 +60,9 @@ export const login = (email, password, rememberMe) => {
                         dispatch(setUserData(user.id, user.email, user.login, true))
                     }
                 })
+            }
+            else if (data.resultCode === 1) {
+                setErrors({api : 'Почта или пароль введены не верно'});
             }
         })
     } 

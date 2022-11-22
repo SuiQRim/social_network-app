@@ -81,12 +81,14 @@ let Login = (props) => {
 
                                 <button
                                     className={s.login}
-                                    disabled={!isValid && !dirty}
+                                    disabled={!isValid || !dirty}
                                     onClick={handleSubmit}
                                     type={'submit'}>
                                     Отправить
                                 </button>
                             </div>
+
+                            {errors.api && <div className={s.error}>{errors.api}</div>}
                         </div>
                     )}
                 </Formik>
