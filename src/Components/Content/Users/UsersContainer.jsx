@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { setPage, setFollowingProgressStataus, getUsers, follow, unFollow } from '../../../redux/users-reducer';
 import Users from './Users';
-import loadGif from '../../../Prefabs/Images/load.gif';
 import withRedirectToLogin from '../../../hoc/withRedirectToLogin';
 import { compose } from 'redux';
+import Preloader from '../../../Prefabs/Preloader';
 
 class UsersContainer extends React.Component {
 
@@ -26,7 +26,7 @@ class UsersContainer extends React.Component {
         return (
 
                 <div>
-                    {p.isFetching ? <img alt="Загрузка" style={{ width: '100px', heigth: '100px', position: 'absolute' }} src={loadGif} /> : null}
+                    {p.isFetching ? <Preloader/> : null}
                     <Users users={p.users} onPageChanged={this.onPageChanged} selectedPage={p.selectedPage} pagesCount={p.pagesCount}
                         diapasoneStart={p.diapasoneStart} diapasone={p.diapasone} follow={p.follow} unFollow={p.unFollow}
                         setFollowingProgressStataus={p.setFollowingProgressStataus} isFollowingInProgress={p.isFollowingInProgress} />

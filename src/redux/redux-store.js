@@ -5,6 +5,7 @@ import profileReducer from "./profile-reducer";
 import tapeReducer from "./tape-reducer";
 import usersReducer from "./users-reducer";
 import thunkMiddleWate from "redux-thunk"
+import appReducer from "./app-reducer";
 
 let reducers = combineReducers(
     {
@@ -12,7 +13,8 @@ let reducers = combineReducers(
         messenger : messagesReducer,
         tape: tapeReducer,
         users : usersReducer,
-        auth : authReducer
+        auth : authReducer,
+        app : appReducer
     }
 );
 
