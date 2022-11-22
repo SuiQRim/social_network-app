@@ -11,11 +11,60 @@
 }
 
 .name {
-    margin: 0 40px;
+    float: right;
+    margin: 0 20px;
     position: relative;
     top: 50%;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
     font-size: 24px;
     color: white;
+}
+
+.logout {
+    float: right;
+    margin: 0 20px;
+    position: relative;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    font-size: 24px;
+    color: white;
+}
+
+.logout button{
+    padding: 10px 20px;
+}
+
+
+.login {
+    float: right;
+    margin: 0 20px;
+    position: relative;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    color: white;
+}
+
+.login a {
+    text-decoration: none;
+    padding: 10px 20px;
+    border: 0px;
+    border-radius: 8px;
+    color: black;
+    background: #a9bcf8;
+
+}
+
+.login a:hover {
+    background-color: #b2c4fc;
+}
+
+.login a:active{
+    background-color: #a3b4ec;
+}
+
+.login a:disabled {
+    background-color: #99a1b9;
 }

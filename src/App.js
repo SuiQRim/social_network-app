@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import LigonContainer from './Components/Content/Account/Login/LigonContainer';
+import LoginContainer from './Components/Content/Account/Login/LoginContainer';
 import DialoguesContainer from './Components/Content/Dialogues/DialoguesContainer';
 import ProfileContainer from './Components/Content/Profile/ProfileContainer';
 import TapeContainer from './Components/Content/Tape/TapeContainer';
@@ -29,7 +29,7 @@ function App() {
             <Route path="/tape" element={<TapeContainer />} />
             <Route path="/messenger" element={<DialoguesContainer />} />
             <Route path="/users" element={<UsersContainer />} />
-            <Route path="/login" element={<LigonContainer/>}/>
+            <Route path="/login" element={<LoginContainer/>}/>
           </Routes>
         </div>
 
